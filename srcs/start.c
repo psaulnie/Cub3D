@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:19:51 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 15:41:05 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:18:38 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ int	destroy_mouse(t_data *data)
 	exit(1);
 }
 
+static void	test(t_data *data)
+{
+
+}
+
 void	start(t_data *data)
 {
 	data->mlx.mlx_win = mlx_new_window(data->mlx.mlx,
@@ -34,9 +39,10 @@ void	start(t_data *data)
 			data->screen.height);
 	data->mlx.addr = mlx_get_data_addr(data->mlx.img, &data->mlx.bits_per_pixel,
 			&data->mlx.line_length, &data->mlx.endian);
-	// pixel_put(data, 5, 5, 0x00FF0000);
-	mlx_key_hook(data->mlx.mlx_win, input, data);
-	mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win, data->mlx.img, 0, 0);
+	test(data);
+	mlx_put_image_to_window(data->mlx.mlx,
+		data->mlx.mlx_win, data->mlx.img, 0, 0);
 	mlx_hook(data->mlx.mlx_win, 17, 1L << 0, destroy_mouse, data);
+	mlx_key_hook(data->mlx.mlx_win, input, data);
 	mlx_loop(data->mlx.mlx);
 }

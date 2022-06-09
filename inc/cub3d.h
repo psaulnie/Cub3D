@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 15:39:38 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:53:23 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 
 
 # include "../mlx/mlx.h"
+
+typedef struct s_pos
+{
+	double	pos_x;
+	double	pos_y;
+}				t_pos;
 
 typedef struct s_player
 {
@@ -67,6 +73,7 @@ typedef struct s_data
 
 /*	DRAW.C	*/
 
+void	draw_line(t_data *data, t_pos start, t_pos end, int color);
 void	pixel_put(t_data *data, int x, int y, int color);
 
 /*	START.C	*/

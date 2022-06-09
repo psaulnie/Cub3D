@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 12:52:46 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:20:25 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_map
 typedef struct s_data
 {
 	t_screen	*screen;
+	t_map		*map;
 }				t_data;
 
 #endif

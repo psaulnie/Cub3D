@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 12:51:54 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:26:41 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	main(int argc, char *argv[])
 {
-	char	*map[] = {"1111111",
+	t_data	data;
+	char	*tmp_map[] = {"1111111",
 		"1000001",
 		"1000001",
 		"1000001",
@@ -24,5 +25,7 @@ int	main(int argc, char *argv[])
 
 	(void)argc;
 	(void)argv;
-	(void)map;
+	data.map->map = tmp_map;
+	data.screen->height = 720;
+	data.screen->width = 1280;
 }

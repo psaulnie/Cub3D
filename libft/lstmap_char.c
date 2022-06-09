@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   lstmap_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 12:52:46 by psaulnie         ###   ########.fr       */
+/*   Created: 2022/03/16 16:09:39 by lbattest          #+#    #+#             */
+/*   Updated: 2022/03/17 09:44:03 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include <stdlib.h>
-
-# include "../mlx/mlx.h"
-
-typedef struct s_screen
+t_list_char	*lstmap_char(t_list_char *lst, void *(*f)(void *),
+	void (*del)(void *))
 {
-	int	width;
-	int	height;
-}				t_screen;
+	t_list_char	*new;
+	t_list_char	*tmp;
 
-typedef struct s_map
-{
-	char	**map;
-	int		x_len;
-	int		y_len;
-}				t_map;
-
-typedef struct s_data
-{
-	t_screen	*screen;
-}				t_data;
-
-#endif
+	new = 0;
+	while (lst)
+	{
+		tmp = lstnew_char(f(lst->content));
+		if (!lst->content)
+			del(lst->content);
+		lst = lst->next;
+		lstadd_back_char(&new, tmp);
+	}
+	return (new);
+}

@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 12:52:46 by psaulnie         ###   ########.fr       */
+/*   Created: 2021/11/13 12:30:06 by lbattest          #+#    #+#             */
+/*   Updated: 2022/05/25 09:37:33 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include <stdlib.h>
-
-# include "../mlx/mlx.h"
-
-typedef struct s_screen
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	width;
-	int	height;
-}				t_screen;
+	int		i;
+	char	*str;
 
-typedef struct s_map
-{
-	char	**map;
-	int		x_len;
-	int		y_len;
-}				t_map;
-
-typedef struct s_data
-{
-	t_screen	*screen;
-}				t_data;
-
-#endif
+	if (!s)
+		return (0);
+	str = (char *)s;
+	i = 0;
+	str = malloc(ft_strlen(s) + 1);
+	if (!str)
+		return (0);
+	while (s[i])
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}

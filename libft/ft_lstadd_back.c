@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 12:51:54 by psaulnie         ###   ########.fr       */
+/*   Created: 2021/11/14 15:54:07 by lbattest          #+#    #+#             */
+/*   Updated: 2021/11/15 11:31:49 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	char	*map[] = {"1111111",
-		"1000001",
-		"1000001",
-		"1000001",
-		"1000001",
-		"1000001",
-		"1111111", NULL};
+	t_list	*temp;
 
-	(void)argc;
-	(void)argv;
-	(void)map;
+	if (*alst == 0)
+	{
+		*alst = new;
+		return ;
+	}
+	temp = ft_lstlast(*alst);
+	temp->next = new;
 }

@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lstnew_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 12:51:54 by psaulnie         ###   ########.fr       */
+/*   Created: 2022/03/16 13:55:05 by lbattest          #+#    #+#             */
+/*   Updated: 2022/03/16 15:33:10 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+t_list_char	*lstnew_char(char *content)
 {
-	char	*map[] = {"1111111",
-		"1000001",
-		"1000001",
-		"1000001",
-		"1000001",
-		"1000001",
-		"1111111", NULL};
+	t_list_char	*list;
 
-	(void)argc;
-	(void)argv;
-	(void)map;
+	list = malloc(sizeof(t_list_char));
+	if (!list)
+		return (0);
+	list->content = content;
+	list->next = 0;
+	return (list);
 }

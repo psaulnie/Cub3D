@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 12:51:54 by psaulnie         ###   ########.fr       */
+/*   Created: 2021/11/03 17:19:25 by lbattest          #+#    #+#             */
+/*   Updated: 2021/11/07 14:29:37 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+void	ft_bzero(void *s, size_t n)
 {
-	char	*map[] = {"1111111",
-		"1000001",
-		"1000001",
-		"1000001",
-		"1000001",
-		"1000001",
-		"1111111", NULL};
+	size_t	i;
 
-	(void)argc;
-	(void)argv;
-	(void)map;
+	i = 0;
+	while (n > i)
+		((char *)s)[i++] = '\0';
 }

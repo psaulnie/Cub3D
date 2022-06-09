@@ -6,7 +6,64 @@
 #    By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 15:39:19 by psaulnie          #+#    #+#              #
-#    Updated: 2022/06/07 15:39:24 by psaulnie         ###   ########.fr        #
+#    Updated: 2022/06/09 12:55:35 by psaulnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME	:=	cub3d
+
+CC		:=	gcc
+CSAN	:= -fsanitize=address -g3
+CFLAGS	:=	-Wall -Wextra -Werror
+
+DIR_SRCS	:=	srcs
+DIR_OBJS	:=	.objs
+DIR_INCS	:=	inc
+
+DIR_LIBFT	:=	libft
+DIR_MLX		:=	mlx
+
+LST_SRCS	:=	main.c \
+
+
+LST_OBJS	:=	$(LST_SRCS:.c=.o)
+
+LST_INCS	:=	cub3d.h
+
+SRCS	:=	$(addprefix $(DIR_SRCS)/,$(LST_SRCS))
+OBJS	:=	$(addprefix $(DIR_OBJS)/,$(LST_OBJS))
+INCS	:=	$(addprefix $(DIR_INCS)/,$(LST_INCS))
+
+
+AR_LIBFT	:=	$(DIR_LIBFT)/libft.a
+
+all:	lib $(NAME)
+
+$(NAME):	$(AR_LIBFT) $(OBJS)
+		$(CC) $(CFLAGS) $^ -o $@
+
+$(DIR_OBJS)/%.o:	$(DIR_SRCS)/%.c $(INCS) Makefile | $(DIR_OBJS)
+		$(CC) $(CFLAGS) -I  $(DIR_INCS) -c $< -o $@
+
+$(DIR_OBJS):
+		mkdir -p $(DIR_OBJS)
+
+lib:
+		make -C $(DIR_LIBFT)
+		make -C $(DIR_MLX)
+		cp $(DIR_MLX)/libmlx.dylib ./
+
+clean:
+		rm -rf $(DIR_OBJS)
+		make -C $(DIR_LIBFT) clean
+		make -C $(DIR_MLX) clean
+
+fclean:	clean
+		rm -rf $(NAME)
+		make -C $(DIR_LIBFT) fclean
+		make -C $(DIR_MLX) clean
+		rm libmlx.dylib
+
+re: fclean all
+
+.PHONY:	all clean fclean re

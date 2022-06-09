@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   lstadd_back_char.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 12:52:46 by psaulnie         ###   ########.fr       */
+/*   Created: 2022/03/16 15:46:14 by lbattest          #+#    #+#             */
+/*   Updated: 2022/03/17 09:42:57 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include <stdlib.h>
-
-# include "../mlx/mlx.h"
-
-typedef struct s_screen
+void	*lstadd_back_char(t_list_char **alst, t_list_char *new)
 {
-	int	width;
-	int	height;
-}				t_screen;
+	t_list_char	*temp;
 
-typedef struct s_map
-{
-	char	**map;
-	int		x_len;
-	int		y_len;
-}				t_map;
-
-typedef struct s_data
-{
-	t_screen	*screen;
-}				t_data;
-
-#endif
+	if (!new)
+		return (NULL);
+	if (*alst == 0)
+	{
+		*alst = new;
+		return ((void *) 1);
+	}
+	temp = lstlast_char(*alst);
+	temp->next = new;
+	return ((void *)1);
+}

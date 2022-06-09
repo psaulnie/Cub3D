@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_strjoin_mod.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 12:52:46 by psaulnie         ###   ########.fr       */
+/*   Created: 2021/11/09 09:46:40 by lbattest          #+#    #+#             */
+/*   Updated: 2022/05/25 09:48:42 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include <stdlib.h>
-
-# include "../mlx/mlx.h"
-
-typedef struct s_screen
+char	*ft_strjoin_mod(char const *s1, char const *s2)
 {
-	int	width;
-	int	height;
-}				t_screen;
+	char	*str;
+	int		i;
+	int		j;
 
-typedef struct s_map
-{
-	char	**map;
-	int		x_len;
-	int		y_len;
-}				t_map;
-
-typedef struct s_data
-{
-	t_screen	*screen;
-}				t_data;
-
-#endif
+	i = 0;
+	j = 0;
+	if (!s1 || !s2)
+		return (0);
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 2));
+	if (!str)
+		return (0);
+	while (s1[i])
+		str[j++] = s1[i++];
+	str[j++] = '/';
+	i = 0;
+	while (s2[i])
+		str[j++] = s2[i++];
+	str[j] = '\0';
+	return (str);
+}

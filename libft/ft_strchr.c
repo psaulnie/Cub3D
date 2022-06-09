@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 12:51:54 by psaulnie         ###   ########.fr       */
+/*   Created: 2021/11/03 12:41:07 by lbattest          #+#    #+#             */
+/*   Updated: 2021/11/15 15:45:06 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
-
-int	main(int argc, char *argv[])
+char	*ft_strchr(const char *s, int c)
 {
-	char	*map[] = {"1111111",
-		"1000001",
-		"1000001",
-		"1000001",
-		"1000001",
-		"1000001",
-		"1111111", NULL};
+	int	i;
 
-	(void)argc;
-	(void)argv;
-	(void)map;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if (c == '\0')
+		return ((char *)&s[i]);
+	return (0);
 }

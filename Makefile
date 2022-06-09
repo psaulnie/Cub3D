@@ -6,7 +6,7 @@
 #    By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 15:39:19 by psaulnie          #+#    #+#              #
-#    Updated: 2022/06/09 15:39:02 by psaulnie         ###   ########.fr        #
+#    Updated: 2022/06/09 18:06:05 by psaulnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ DIR_MLX		:=	mlx
 LST_SRCS	:=	main.c \
 				draw.c \
 				start.c \
+				utils.c \
 
 LST_OBJS	:=	$(LST_SRCS:.c=.o)
 

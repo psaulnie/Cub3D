@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 15:53:23 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/09 18:07:58 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define CUB3D_H
 
 # include <stdlib.h>
+# include <math.h>
 # include <stdio.h>
 // STDIO to remove
-
 
 # include "../mlx/mlx.h"
 
@@ -79,5 +79,9 @@ void	pixel_put(t_data *data, int x, int y, int color);
 /*	START.C	*/
 
 void	start(t_data *data);
+
+/*	UTILS.C	*/
+
+double	degree_to_radians(double degree);
 
 #endif

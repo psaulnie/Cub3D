@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:19:51 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 16:18:38 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/09 18:05:54 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	destroy_mouse(t_data *data)
 
 static void	test(t_data *data)
 {
-
+	(void)data;
 }
 
 void	start(t_data *data)

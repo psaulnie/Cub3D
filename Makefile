@@ -6,15 +6,15 @@
 #    By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 15:39:19 by psaulnie          #+#    #+#              #
-#    Updated: 2022/06/09 12:55:35 by psaulnie         ###   ########.fr        #
+#    Updated: 2022/06/09 15:39:02 by psaulnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:=	cub3d
 
 CC		:=	gcc
-CSAN	:= -fsanitize=address -g3
 CFLAGS	:=	-Wall -Wextra -Werror
+CFLAGS	+= -fsanitize=address -g3
 
 DIR_SRCS	:=	srcs
 DIR_OBJS	:=	.objs
@@ -24,7 +24,8 @@ DIR_LIBFT	:=	libft
 DIR_MLX		:=	mlx
 
 LST_SRCS	:=	main.c \
-
+				draw.c \
+				start.c \
 
 LST_OBJS	:=	$(LST_SRCS:.c=.o)
 
@@ -36,10 +37,11 @@ INCS	:=	$(addprefix $(DIR_INCS)/,$(LST_INCS))
 
 
 AR_LIBFT	:=	$(DIR_LIBFT)/libft.a
+AR_MLX		:= libmlx.dylib
 
 all:	lib $(NAME)
 
-$(NAME):	$(AR_LIBFT) $(OBJS)
+$(NAME):	$(AR_MLX) $(AR_LIBFT) $(OBJS)
 		$(CC) $(CFLAGS) $^ -o $@
 
 $(DIR_OBJS)/%.o:	$(DIR_SRCS)/%.c $(INCS) Makefile | $(DIR_OBJS)

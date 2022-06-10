@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 18:07:58 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/10 16:28:28 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,28 @@
 # include <stdio.h>
 // STDIO to remove
 
+# include "../libft/libft.h"
 # include "../mlx/mlx.h"
+
+typedef enum e_orientation
+{
+	NORTH,
+	WEST,
+	EAST,
+	SOUTH
+}			t_orientation;
 
 typedef struct s_pos
 {
-	double	pos_x;
-	double	pos_y;
+	double		x;
+	double		y;
 }				t_pos;
 
 typedef struct s_player
 {
-	double	pos_x;
-	double	pos_y;
+	double			x;
+	double			y;
+	t_orientation	orientation;
 }				t_player;
 
 typedef struct s_screen
@@ -63,6 +73,7 @@ typedef struct s_data
 	t_player	player;
 	t_map		map;
 	t_mlx		mlx;
+	t_pos		sideDist;
 }				t_data;
 
 /***************************/

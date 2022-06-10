@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:36:43 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 16:00:17 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/10 14:13:20 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	draw_line(t_data *data, t_pos start, t_pos end, int color)
 {
 	int	i;
 
-	i = start.pos_y;
-	while (end.pos_y != i)
+	i = start.y;
+	while (end.y != i)
 	{
-		pixel_put(data, start.pos_x, i, color);
-		if (end.pos_y > start.pos_y)
+		pixel_put(data, start.x, i, color);
+		if (end.y > start.y)
 			i++;
 		else
 			i--;

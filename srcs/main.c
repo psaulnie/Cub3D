@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 15:25:26 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/10 15:16:20 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@ int	main(int argc, char *argv[])
 	(void)argc;
 	(void)argv;
 	data.map.map = tmp_map;
+	data.map.x_len = 6;
+	data.map.y_len = 6;
 	data.screen.height = 720;
 	data.screen.width = 1280;
-	data.player.pos_x = 3;
-	data.player.pos_y = 3;
+	data.player.x = 3;
+	data.player.y = 3;
+	data.player.orientation = NORTH;
 	data.mlx.mlx = mlx_init();
 	start(&data);
 }

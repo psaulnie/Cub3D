@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/10 16:28:28 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/13 17:48:46 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,30 @@ typedef struct s_mlx
 	int		endian;
 }				t_mlx;
 
+typedef struct s_algo
+{
+	t_pos	dir;
+	t_pos	plane;
+	t_pos	ray_pos;
+	t_pos	ray_dir;
+	t_pos	dist;
+	t_pos	map;
+	t_pos	side_dist;
+	t_pos	delta_dist;
+	t_pos	step;
+	int		side;
+	int		hit;
+	double	perp_wall_dist;
+	double	camera_x;
+}				t_algo;
+
 typedef struct s_data
 {
 	t_screen	screen;
 	t_player	player;
 	t_map		map;
 	t_mlx		mlx;
-	t_pos		sideDist;
+	t_algo		algo;
 }				t_data;
 
 /***************************/

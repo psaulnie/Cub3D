@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:19:51 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/10 16:28:50 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/14 11:54:56 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,92 +26,106 @@ int	destroy_mouse(t_data *data)
 	exit(1);
 }
 
-static t_pos	get_wall_pos(t_data *data, t_pos dir, double ray_angle)
+static void	get_wall_pos(t_data *data, t_pos pos)
 {
-	t_pos	ray;
-	t_pos	dist;
-	int		side;
+	double	line_height;
+	t_pos	start;
+	t_pos	end;
 
-	ray.x = data->player.x;
-	ray.y = data->player.y;
-	(void)ray_angle;
-	while (1)
+	data->algo.camera_x = (2 * pos.x / data->screen.width) - 1;
+	data->algo.ray_pos.x = data->player.x;
+	data->algo.ray_pos.y = data->player.y;
+	data->algo.ray_dir.x = data->algo.dir.x + data->algo.plane.x
+		* data->algo.camera_x;
+	data->algo.ray_dir.y = data->algo.dir.y + data->algo.plane.y
+		* data->algo.camera_x;
+	data->algo.map.x = data->algo.ray_pos.x;
+	data->algo.map.y = data->algo.ray_pos.y;
+	data->algo.delta_dist.x = sqrt(1
+			+ (data->algo.ray_dir.y * data->algo.ray_dir.y)
+			/ (data->algo.ray_dir.x * data->algo.ray_dir.x));
+	data->algo.delta_dist.y = sqrt(1
+			+ (data->algo.ray_dir.x * data->algo.ray_dir.x)
+			/ (data->algo.ray_dir.y * data->algo.ray_dir.y));
+	data->algo.hit = 0;
+	if (data->algo.ray_dir.x < 0)
 	{
-		if (dist.x < dist.y)
-		{
-			dist.x += dir.x;
-			ray.x += dir.x;
-			side = 0;
-		}
-		else
-		{
-			dist.y += dir.y;
-			ray.y += dir.y;
-			side = 1;
-		}
-		// if ((int)ray.x >= data->map.x_len)
-		// 	ray.x = data->map.x_len;
-		// if ((int)ray.y >= data->map.y_len)
-		// 	ray.y = data->map.y_len;
-		// if ((int)ray.x < 0)
-		// 	ray.x = 0;
-		// if ((int)ray.y < 0)
-		// 	ray.y = 0;
-		if (data->map.map[(int)ray.y][(int)ray.x] == '1')
-			break ;
-	}
-	return (ray);
-}
-
-static t_pos	get_dir(t_pos pos, t_data *data)
-{
-	t_pos	dir;
-
-	if (data->player.orientation == NORTH || data->player.orientation == SOUTH)
-	{
-		if (pos.x == data->screen.width / 2)
-			dir.x = 0;
-		else if (pos.x < data->screen.width / 2)
-			dir.x = -1;
-		else
-			dir.x = 1;
-		dir.y = -1;
-		if (data->player.orientation == SOUTH)
-			dir.y = 1;
+		data->algo.step.x = -1;
+		data->algo.side_dist.x = (data->algo.ray_pos.x - data->algo.map.x)
+			* data->algo.delta_dist.x;
 	}
 	else
 	{
-		if (pos.x == data->screen.width / 2)
-			dir.y = 0;
-		else if (pos.x < data->screen.width / 2)
-			dir.y = 1;
-		else
-			dir.y = -1;
-		dir.x = -1;
-		if (data->player.orientation == EAST)
-			dir.x = 1;
+		data->algo.step.x = 1;
+		data->algo.side_dist.x = (data->algo.map.x + 1.0 - data->algo.ray_pos.x)
+			* data->algo.delta_dist.x;
 	}
-	return (dir);
+	if (data->algo.ray_dir.y < 0)
+	{
+		data->algo.step.y = -1;
+		data->algo.side_dist.y = (data->algo.ray_pos.y - data->algo.map.y)
+			* data->algo.delta_dist.y;
+	}
+	else
+	{
+		data->algo.step.y = 1;
+		data->algo.side_dist.y = (data->algo.map.y + 1.0 - data->algo.ray_pos.y)
+			* data->algo.delta_dist.y;
+	}
+	data->algo.hit = 0;
+	while (data->algo.hit == 0)
+	{
+		if (data->algo.side_dist.x < data->algo.side_dist.y)
+		{
+			data->algo.side_dist.x += data->algo.delta_dist.x;
+			data->algo.map.x += data->algo.step.x;
+			data->algo.side = 0;
+		}
+		else
+		{
+			data->algo.side_dist.y += data->algo.delta_dist.y;
+			data->algo.map.y += data->algo.step.y;
+			data->algo.side = 1;
+		}
+		if (data->map.map[(int)data->algo.map.x][(int)data->algo.map.y] == '1')
+			data->algo.hit = 1;
+	}
+	printf("%d %d\n", (int)data->algo.map.x, (int)data->algo.map.y);
+	// printf("[Map Y : %f][RayPos Y : %f][step Y : %f][rayDir : %f] == %f\n", data->algo.map.y, data->algo.ray_pos.y, data->algo.step.y, data->algo.ray_dir.y, ((data->algo.map.y - data->algo.ray_pos.y
+	// 				+ (1 - data->algo.step.y) / 2) / data->algo.ray_dir.y));
+	if (data->algo.side == 0)
+		data->algo.perp_wall_dist = abs((int)((data->algo.map.x - data->algo.ray_pos.x
+					+ (1 - data->algo.step.x) / 2) / data->algo.ray_dir.x));
+	else
+		data->algo.perp_wall_dist = abs((int)((data->algo.map.y - data->algo.ray_pos.y
+					+ (1 - data->algo.step.y) / 2) / data->algo.ray_dir.y));
+	line_height = abs((int)(data->screen.height / data->algo.perp_wall_dist));
+	start.x = pos.x;
+	end.x = pos.x;
+	start.y = (int)(-line_height / 2 + data->screen.height / 2);
+	end.y = (int)(line_height / 2 + data->screen.height / 2);
+	if (start.x < 800)
+		printf("[%f %f] [%f %f]\n", start.x, start.y, end.x, end.y);
+	if (start.y < 0)
+		start.y = 0;
+	if (end.y >= data->screen.height)
+		end.y = data->screen.height - 1;
+	int	color;
+	if (data->algo.side == 0)
+		color = 0xCCCCCC;
+	else
+		color = 0x00FF00;
+	draw_line(data, start, end, color);
 }
 
 static void	test(t_data *data)
 {
 	t_pos	pos;
-	t_pos	dir;
-	t_pos	wall;
-	double	ray_angle;
-	t_pos	start; t_pos	end;
 
 	pos.x = 0;
-	ray_angle = (2 * tan(60 * data->screen.height / (data->screen.width * 2))
-			/ data->screen.height);
 	while (pos.x < data->screen.width)
 	{
-		dir = get_dir(pos, data);
-		wall = get_wall_pos(data, dir, ray_angle);
-		start.x = pos.x; end.x = pos.x; start.y = 0; end.y = 720;
-		draw_line(data, start, end, 0x00FF0000);
-		ray_angle += ray_angle;
+		get_wall_pos(data, pos);
 		pos.x++;
 	}
 	printf("----------\nFini\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 15:39:38 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/16 15:17:53 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 # define CUB3D_H
 
 # include <stdlib.h>
+# include <fcntl.h>
 # include <stdio.h>
 // STDIO to remove
 
-
 # include "../mlx/mlx.h"
+# include "../libft/libft.h"
 
 typedef struct s_player
 {
@@ -39,6 +40,16 @@ typedef struct s_map
 	int		y_len;
 }				t_map;
 
+typedef struct s_sprites
+{
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	int		f;
+	int		c;
+}				t_sprites;
+
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -55,6 +66,7 @@ typedef struct s_data
 {
 	t_screen	screen;
 	t_player	player;
+	t_sprites	sprites;
 	t_map		map;
 	t_mlx		mlx;
 }				t_data;
@@ -64,6 +76,15 @@ typedef struct s_data
 /*        ALGORITHM        */
 /*						   */
 /***************************/
+
+/*	PARSING.C	*/
+
+void	parsing(char *name, t_data *data);
+
+/*	UTILS.C	*/
+
+void	error(char *str, int i);
+void	free_all(char **str);
 
 /*	DRAW.C	*/
 

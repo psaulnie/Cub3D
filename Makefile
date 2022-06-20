@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+         #
+#    By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 15:39:19 by psaulnie          #+#    #+#              #
-#    Updated: 2022/06/09 15:39:02 by psaulnie         ###   ########.fr        #
+#    Updated: 2022/06/14 15:17:26 by lbattest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ DIR_MLX		:=	mlx
 LST_SRCS	:=	main.c \
 				draw.c \
 				start.c \
+				parsing.c \
+				utils.c \
 
 LST_OBJS	:=	$(LST_SRCS:.c=.o)
 

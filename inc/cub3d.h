@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/20 13:22:34 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/20 17:07:46 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 
 # include <stdlib.h>
 # include <math.h>
+# include "../libft/libft.h"
+# include <fcntl.h>
 # include <stdio.h>
 // STDIO to remove
 
-# include "../libft/libft.h"
+
 # include "../mlx/mlx.h"
+# include "../libft/libft.h"
 
 typedef enum e_orientation
 {
@@ -37,8 +40,8 @@ typedef struct s_pos
 
 typedef struct s_player
 {
-	double			x;
-	double			y;
+	double			pos_x;
+	double			pos_y;
 	t_orientation	orientation;
 }				t_player;
 
@@ -65,6 +68,16 @@ typedef struct s_text
 	int		endian;
 	int		bits_per_pixel;
 }				t_text;
+
+typedef struct s_sprites
+{
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	int		f;
+	int		c;
+}				t_sprites;
 
 typedef struct s_mlx
 {
@@ -101,6 +114,7 @@ typedef struct s_data
 {
 	t_screen	screen;
 	t_player	player;
+	t_sprites	sprites;
 	t_map		map;
 	t_mlx		mlx;
 	t_algo		algo;
@@ -117,6 +131,15 @@ void	load_textures(t_data *data);
 /*        ALGORITHM        */
 /*						   */
 /***************************/
+
+/*	PARSING.C	*/
+
+void	parsing(char *name, t_data *data);
+
+/*	UTILS.C	*/
+
+void	error(char *str, int i);
+void	free_all(char **str);
 
 /*	DRAW.C	*/
 

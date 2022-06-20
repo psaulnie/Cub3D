@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcut.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 16:39:26 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/04/07 10:59:52 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/17 15:10:25 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 /*	Cut from i to j and free str	*/
 
-char	*ft_strcut(char *str, int i, int j)
+char	*ft_strcut(char *str, int i, int j, int freeable)
 {
 	char	*new_str;
 	int		n;
@@ -34,6 +34,7 @@ char	*ft_strcut(char *str, int i, int j)
 		if (n < i || n > j)
 			new_str[k++] = str[n];
 	new_str[k] = '\0';
-	free(str);
+	if (freeable)
+		free(str);
 	return (new_str);
 }

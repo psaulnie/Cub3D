@@ -6,13 +6,28 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 18:01:12 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/09 18:14:58 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/20 17:03:40 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-double	degree_to_radians(double degree)
+void	error(char *str, int i)
 {
-	return (degree * (M_PI / 180));
+	if (i == 0)
+		perror("cub3d");
+	else if (i == 1)
+		ft_putendl_fd(str, 2);
+	exit (1);
+}
+
+void	free_all(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		free(str[i++]);
+	free(str);
+	return ;
 }

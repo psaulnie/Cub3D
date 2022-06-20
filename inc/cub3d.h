@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/14 16:17:30 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/20 13:22:34 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,23 @@ typedef struct s_map
 	int		y_len;
 }				t_map;
 
+typedef struct s_text
+{
+	void	*img;
+	int		*addr;
+	int		img_width;
+	int		img_height;
+	int		size_line;
+	int		endian;
+	int		bits_per_pixel;
+}				t_text;
+
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*mlx_win;
-
 	void	*img;
-	char	*addr;
+	int		*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -78,6 +88,7 @@ typedef struct s_algo
 	t_pos	side_dist;
 	t_pos	delta_dist;
 	t_pos	step;
+	int		**buffer;
 	int		side;
 	int		hit;
 	double	perp_wall_dist;
@@ -93,7 +104,13 @@ typedef struct s_data
 	t_map		map;
 	t_mlx		mlx;
 	t_algo		algo;
+	t_text		*text;
+	int			**texture;
+	int			floor_color;
+	int			ceiling_color;
 }				t_data;
+
+void	load_textures(t_data *data);
 
 /***************************/
 /*						   */
@@ -103,6 +120,7 @@ typedef struct s_data
 
 /*	DRAW.C	*/
 
+void	draw(t_data *data);
 void	draw_line(t_data *data, t_pos start, t_pos end, int color);
 void	pixel_put(t_data *data, int x, int y, int color);
 

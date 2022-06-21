@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:19:51 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/20 16:56:29 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/21 15:29:22 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,7 @@ static void	get_wall_pos(t_data *data, t_pos pos)
 	double	step = 1.0 * 64 / line_height;
 	double	text_pos = (start - data->screen.height / 2 + line_height / 2) * step;
 	int	y = 0;
-	while (y < start)
+	while (y < start && y < 720)
 	{
 		data->algo.buffer[y][(int)pos.x] = data->ceiling_color;
 		y++;

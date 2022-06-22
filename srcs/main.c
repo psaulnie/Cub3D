@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/22 11:19:54 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/06/22 13:05:53 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,10 @@ static t_data	init(char **tmp_map)
 {
 	t_data	data;
 
+	(void)tmp_map;
 	data.floor_color = 0xFFC3C5;
 	data.ceiling_color = 0xC3FFE1;
-	data.map.map = tmp_map;
+	// data.map.map = tmp_map;
 	data.map.x_len = 6;
 	data.map.y_len = 6;
 	data.screen.height = 720;
@@ -125,7 +126,8 @@ static t_data	init(char **tmp_map)
 int	main(int argc, char *argv[])
 {
 	t_data	data;
-	char	*tmp_map[] = {"1111111",
+	char	*tmp_map[] = {
+		"1111111",
 		"1010001",
 		"1000001",
 		"1000001",
@@ -142,10 +144,10 @@ int	main(int argc, char *argv[])
 	data = set_orientation(data);
 	data.screen.height = 720;
 	data.screen.width = 1280;
-	data.player.pos_x = 15;
-	data.player.pos_y = 3;
-	data.algo.ray_pos.x = data.player.pos_x;
-	data.algo.ray_pos.y = data.player.pos_y;
+	// data.player.pos_x = 18;
+	// data.player.pos_y = 3;
+	data.algo.ray_pos.x = data.player.pos_y;
+	data.algo.ray_pos.y = data.player.pos_x;
 	data.mlx.mlx = mlx_init();
 	start(&data);
 }

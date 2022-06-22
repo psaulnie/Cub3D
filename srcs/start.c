@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:19:51 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/22 11:16:33 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/22 12:55:50 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	input(int key, t_data *data)
 			data->screen.height);
 	data->mlx.addr = (int *)mlx_get_data_addr(data->mlx.img, &data->mlx.bits_per_pixel,
 			&data->mlx.line_length, &data->mlx.endian);
-	printf("%d\n", key);
+	printf("%f %f\n", data->algo.ray_pos.x, data->algo.ray_pos.y);
 	return (0);
 }
 
@@ -164,8 +164,7 @@ static void	get_wall_pos(t_data *data, t_pos pos)
 			data->algo.map.y += data->algo.step.y;
 			data->algo.side = 1;
 		}
-
-		if (data->map.map[(int)data->algo.map.y][(int)data->algo.map.x] == '1')
+		if (data->map.map[(int)data->algo.map.x][(int)data->algo.map.y] == '1')
 			data->algo.hit = 1;
 	}
 	if (data->algo.side == 0)
@@ -238,6 +237,7 @@ static int	test(t_data *data)
 
 void	start(t_data *data)
 {
+	printf("%f %f", data->algo.ray_pos.x, data->algo.ray_pos.y);
 	load_textures(data);
 	data->mlx.mlx_win = mlx_new_window(data->mlx.mlx,
 			data->screen.width, data->screen.height, "Cub3D");

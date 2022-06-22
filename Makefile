@@ -6,7 +6,7 @@
 #    By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 15:39:19 by psaulnie          #+#    #+#              #
-#    Updated: 2022/06/22 11:21:05 by lbattest         ###   ########.fr        #
+#    Updated: 2022/06/22 15:46:34 by lbattest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	:=	cub3d
 
 CC		:=	gcc
 CFLAGS	:=	-Wall -Wextra -Werror
-CFLAGS	+= -fsanitize=address -g3
+# CFLAGS	+= -fsanitize=address -g3
 
 DIR_SRCS	:=	srcs
 DIR_OBJS	:=	.objs

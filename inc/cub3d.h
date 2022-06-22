@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/22 11:20:34 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:34:52 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,6 @@ typedef struct s_screen
 	int	width;
 	int	height;
 }				t_screen;
-
-typedef struct s_map
-{
-	char	**map;
-	int		x_len;
-	int		y_len;
-}				t_map;
 
 typedef struct s_obj
 {
@@ -120,10 +113,10 @@ typedef struct s_data
 	t_screen	screen;
 	t_player	player;
 	t_sprites	sprites;
-	t_map		map;
 	t_mlx		mlx;
 	t_algo		algo;
 	t_text		*text;
+	char		**map;
 	int			**texture;
 	int			floor_color;
 	int			ceiling_color;
@@ -139,6 +132,7 @@ void	load_textures(t_data *data);
 
 /*	PARSING.C	*/
 
+int		usless_line(char *str);
 void	parsing(char *name, t_data *data);
 
 /*	UTILS.C	*/
@@ -159,7 +153,7 @@ void	start(t_data *data);
 
 /*	GET_PATH	*/
 
-void	get_map(int fd, t_data *data);
+void	get_map(int fd, t_data *data, size_t max_len);
 
 /*	UTILS.C	*/
 

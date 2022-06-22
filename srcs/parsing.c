@@ -6,13 +6,13 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:46:59 by lbattest          #+#    #+#             */
-/*   Updated: 2022/06/22 11:19:21 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:53:31 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static int	is_usless(char *str)
+int	usless_line(char *str)
 {
 	int	i;
 
@@ -71,7 +71,7 @@ static void	init(int fd, t_data *data)
 		str = get_next_line(fd);
 		if (!str)
 			break ;
-		if (is_usless(str) == 1)
+		if (usless_line(str) == 1)
 			continue ;
 		if (ft_strnstr(str, "NO ", 3) != 0 && i++ < 6)
 			data->sprites.no = get_path(str + 2);
@@ -86,7 +86,7 @@ static void	init(int fd, t_data *data)
 		else if (ft_strnstr(str, "C ", 2) != 0 && i++ < 6)
 			data->sprites.c = char_num_to_int(str + 1);
 	}
-	get_map(fd, data);
+	get_map(fd, data, 0);
 }
 
 void	parsing(char *name, t_data *data)
@@ -96,7 +96,7 @@ void	parsing(char *name, t_data *data)
 	fd = open_map(name);
 	init(fd, data);
 	// printf("no = %s\nso = %s\nwe = %s\nea = %s\nf = %d\nc = %d\n", data->sprites.no, data->sprites.so, data->sprites.we, data->sprites.ea, data->sprites.f, data->sprites.c);
-	// int i= -1;
-	// while (data->map.map[++i])
-	// 	printf("%s\n", data->map.map[i]);
+	int i= -1;
+	while (data->map[++i])
+		printf("%s\n", data->map[i]);
 }

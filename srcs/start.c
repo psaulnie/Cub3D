@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:19:51 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/22 12:55:50 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:18:18 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	input(int key, t_data *data)
 		exit(1);
 	if (key == 13)
 	{
-		if (data->map.map[(int)(data->algo.ray_pos.x + data->algo.dir.x
+		if (data->map[(int)(data->algo.ray_pos.x + data->algo.dir.x
 				* data->algo.move_speed)][(int)data->algo.ray_pos.y] == '0')
 			data->algo.ray_pos.x += data->algo.dir.x * data->algo.move_speed;
-		if (data->map.map[(int)(data->algo.ray_pos.x)][(int)(data->algo.ray_pos.y
+		if (data->map[(int)(data->algo.ray_pos.x)][(int)(data->algo.ray_pos.y
 				+ data->algo.dir.y * data->algo.move_speed)] == '0')
 			data->algo.ray_pos.y += data->algo.dir.y * data->algo.move_speed;
 	}
@@ -35,10 +35,10 @@ int	input(int key, t_data *data)
 	}
 	else if (key == 1)
 	{
-		if (data->map.map[(int)(data->algo.ray_pos.x - data->algo.dir.x
+		if (data->map[(int)(data->algo.ray_pos.x - data->algo.dir.x
 				* data->algo.move_speed)][(int)data->algo.ray_pos.y] == '0')
 			data->algo.ray_pos.x -= data->algo.dir.x * data->algo.move_speed;
-		if (data->map.map[(int)(data->algo.ray_pos.x)][(int)(data->algo.ray_pos.y
+		if (data->map[(int)(data->algo.ray_pos.x)][(int)(data->algo.ray_pos.y
 				- data->algo.dir.y * data->algo.move_speed)] == '0')
 			data->algo.ray_pos.y -= data->algo.dir.y * data->algo.move_speed;
 	}
@@ -164,7 +164,7 @@ static void	get_wall_pos(t_data *data, t_pos pos)
 			data->algo.map.y += data->algo.step.y;
 			data->algo.side = 1;
 		}
-		if (data->map.map[(int)data->algo.map.x][(int)data->algo.map.y] == '1')
+		if (data->map[(int)data->algo.map.x][(int)data->algo.map.y] == '1')
 			data->algo.hit = 1;
 	}
 	if (data->algo.side == 0)

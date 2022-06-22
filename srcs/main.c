@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/22 13:05:53 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:50:54 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,6 @@ static t_data	init(char **tmp_map)
 	data.floor_color = 0xFFC3C5;
 	data.ceiling_color = 0xC3FFE1;
 	// data.map.map = tmp_map;
-	data.map.x_len = 6;
-	data.map.y_len = 6;
 	data.screen.height = 720;
 	data.screen.width = 1280;
 	// data.player.pos_x = 5;

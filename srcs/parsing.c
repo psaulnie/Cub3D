@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:46:59 by lbattest          #+#    #+#             */
-/*   Updated: 2022/06/22 10:49:09 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/22 13:24:51 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ static void	fill_map(t_data *data, int line_nbr, t_list *tmp_map)
 		{
 			if (ft_isalpha(data->map.map[i][j]))
 			{
-				data->player.pos_x = j;
-				data->player.pos_y = i;
+				data->player.pos_x = j + 0.5;
+				data->player.pos_y = i + 0.5;
 				get_player_orientation(data, data->map.map[i][j]);
 				data->map.map[i][j] = '0';
 			}

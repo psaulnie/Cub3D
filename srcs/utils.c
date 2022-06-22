@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 18:01:12 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/20 17:03:40 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/22 13:07:13 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	error(char *str, int i)
 	exit (1);
 }
 
+
 void	free_all(char **str)
 {
 	int	i;
@@ -30,4 +31,9 @@ void	free_all(char **str)
 		free(str[i++]);
 	free(str);
 	return ;
+}
+
+int	is_power_of_two(int x)
+{
+	return ((x & (x - 1)) == 0);
 }

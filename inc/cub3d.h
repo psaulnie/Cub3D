@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/20 17:07:46 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/22 14:05:35 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <fcntl.h>
 # include <stdio.h>
 // STDIO to remove
-
 
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
@@ -124,7 +123,6 @@ typedef struct s_data
 	int			ceiling_color;
 }				t_data;
 
-void	load_textures(t_data *data);
 
 /***************************/
 /*						   */
@@ -132,14 +130,9 @@ void	load_textures(t_data *data);
 /*						   */
 /***************************/
 
-/*	PARSING.C	*/
+/*	INPUT.C		*/
 
-void	parsing(char *name, t_data *data);
-
-/*	UTILS.C	*/
-
-void	error(char *str, int i);
-void	free_all(char **str);
+int		input(int key, t_data *data);
 
 /*	DRAW.C	*/
 
@@ -147,12 +140,23 @@ void	draw(t_data *data);
 void	draw_line(t_data *data, t_pos start, t_pos end, int color);
 void	pixel_put(t_data *data, int x, int y, int color);
 
+/*	PARSING.C	*/
+
+void	parsing(char *name, t_data *data);
+
 /*	START.C	*/
 
 void	start(t_data *data);
 
+/*	TEXTURES.C	*/
+
+void	load_textures(t_data *data);
+void	apply_textures(t_data *data);
+
 /*	UTILS.C	*/
 
-double	degree_to_radians(double degree);
+void	error(char *str, int i);
+void	free_all(char **str);
+int		is_power_of_two(int x);
 
 #endif

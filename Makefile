@@ -6,7 +6,7 @@
 #    By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 15:39:19 by psaulnie          #+#    #+#              #
-#    Updated: 2022/06/20 17:09:08 by psaulnie         ###   ########.fr        #
+#    Updated: 2022/06/22 15:49:40 by psaulnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,10 @@ DIR_LIBFT	:=	libft
 DIR_MLX		:=	mlx
 
 LST_SRCS	:=	draw.c \
+				input.c \
 				main.c \
-				start.c \
 				parsing.c \
+				start.c \
 				textures.c \
 				utils.c \
 

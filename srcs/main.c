@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/21 15:29:44 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/22 11:16:13 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ static t_data	init(char **tmp_map)
 	data.map.y_len = 6;
 	data.screen.height = 720;
 	data.screen.width = 1280;
-	data.player.pos_x = 5;
-	data.player.pos_y = 4;
+	// data.player.pos_x = 5;
+	// data.player.pos_y = 4;
 	data.player.orientation = WEST;
 	data.algo.dir.x = -1;
 	data.algo.dir.y = 0;
@@ -117,8 +117,6 @@ static t_data	init(char **tmp_map)
 	data.algo.plane.y = 0.66;
 	data.algo.move_speed = 0.1;
 	data.algo.rot_speed = 0.1;
-	data.algo.ray_pos.x = data.player.pos_x;
-	data.algo.ray_pos.y = data.player.pos_y;
 	data.algo.buffer = set_buffer(data.screen);
 	data.texture = set_texture(64);
 	return (data);
@@ -139,12 +137,15 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		return (1);
 	parsing(argv[1], &data);
+	printf("%f %f\n", data.player.pos_x, data.player.pos_y);
 	// data.map.map = tmp_map;
 	data = set_orientation(data);
 	data.screen.height = 720;
 	data.screen.width = 1280;
-	// data.player.pos_x = 3;
-	// data.player.pos_y = 3;
+	data.player.pos_x = 15;
+	data.player.pos_y = 3;
+	data.algo.ray_pos.x = data.player.pos_x;
+	data.algo.ray_pos.y = data.player.pos_y;
 	data.mlx.mlx = mlx_init();
 	start(&data);
 }

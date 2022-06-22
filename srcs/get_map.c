@@ -6,13 +6,13 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 17:50:29 by lbattest          #+#    #+#             */
-/*   Updated: 2022/06/22 11:22:43 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/06/22 12:52:42 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	check_map(t_data *data)
+static void	check_map(t_data *data)
 {
 	int		x;
 	int		y;
@@ -27,7 +27,7 @@ void	check_map(t_data *data)
 		x = -1;
 		while (map[y][++x])
 		{
-			if (map[y][x] == '1' && map[y][x + 1] != ' ')
+			if (map[y][x] == ' ' && map[y][x + 1] != '1')
 				obj.wall = 1;
 			if (map[y][x] == '1' && map[y][x + 1] == ' ')
 				obj.wall = 0;
@@ -38,6 +38,7 @@ void	check_map(t_data *data)
 			}
 			if (obj.wall == 1 && map[y][x] == ' ')
 				puts("espace entre mur");
+			//rajouter les autres lettre  E W O
 			if (map[y][x] != '1' && data->map.map[y][x] != '0' &&
 			data->map.map[y][x] != 'N' && data->map.map[y][x] != ' ')
 				puts("mauvais charactere");
@@ -52,20 +53,29 @@ void	check_map(t_data *data)
 	}
 }
 
-static void	get_player_orientation(t_data *data, char c)
+static void	get_player_orientation(t_data *data, int i)
 {
-	if (c == 'N')
-		data->player.orientation = NORTH;
-	else if (c == 'W')
-		data->player.orientation = WEST;
-	else if (c == 'S')
-		data->player.orientation = SOUTH;
-	else if (c == 'E')
-		data->player.orientation = EAST;
-	else
+	int	j;
+
+	j = -1;
+	while (data->map.map[i][++j])
 	{
-		ft_putstr_fd("Invalid map\n", 2);
-		exit(0); // à faire proprement
+		if (ft_isalpha(data->map.map[i][j]))
+		{
+			data->player.pos_x = j;
+			data->player.pos_y = i;
+		}
+		if (data->map.map[i][j] == 'N')
+			data->player.orientation = NORTH;
+		else if (data->map.map[i][j] == 'W')
+			data->player.orientation = WEST;
+		else if (data->map.map[i][j] == 'S')
+			data->player.orientation = SOUTH;
+		else if (data->map.map[i][j] == 'E')
+			data->player.orientation = EAST;
+		else
+			error("Error\nInvalid map", 1);// à faire proprement
+		data->map.map[i][j] = '0';
 	}
 }
 
@@ -73,30 +83,23 @@ static void	fill_map(t_data *data, int line_nbr, t_list *tmp_map)
 {
 	t_list	*tmp_ptr;
 	int		i;
-	int		j;
+	int		max_len;
 
 	i = 0;
+	max_len = 0;
 	data->map.map = malloc(sizeof(char *) * (line_nbr + 1));
 	while (i < line_nbr)
 	{
-		j = 0;
+		if (ft_strlen(tmp_map->content) > max_len)
+			max_len = ft_strlen(tmp_map->content);
 		data->map.map[i] = tmp_map->content;
-		while (data->map.map[i][j])
-		{
-			if (ft_isalpha(data->map.map[i][j]))
-			{
-				data->player.pos_x = j;
-				data->player.pos_y = i;
-				get_player_orientation(data, data->map.map[i][j]);
-				data->map.map[i][j] = '0';
-			}
-			j++;
-		}
+		get_player_orientation(data, i);
 		tmp_map = tmp_map->next;
 		i++;
 	}
 	data->map.map[i] = NULL;
 	ft_lstclear(&tmp_ptr, NULL);
+	check_map(data, max_len);
 }
 
 void	get_map(int fd, t_data *data)

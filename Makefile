@@ -6,7 +6,7 @@
 #    By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 15:39:19 by psaulnie          #+#    #+#              #
-#    Updated: 2022/06/14 15:17:26 by lbattest         ###   ########.fr        #
+#    Updated: 2022/06/20 17:58:31 by lbattest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ LST_SRCS	:=	main.c \
 				start.c \
 				parsing.c \
 				utils.c \
+				get_map.c \
 
 LST_OBJS	:=	$(LST_SRCS:.c=.o)
 

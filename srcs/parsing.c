@@ -6,27 +6,11 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:46:59 by lbattest          #+#    #+#             */
-/*   Updated: 2022/06/20 16:57:48 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/06/20 18:10:34 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-static	int	open_map(char *name)
-{
-	int	i;
-	int	fd;
-
-	i = 0;
-	while (name[i + 4])
-		i++;
-	if (ft_strncmp(&name[i], ".cub", 4) != 0)
-		error("Error\nMap must finish with \".cub\"", 1);
-	fd = open(name, O_RDONLY);
-	if (fd < 0)
-		error("", 0);
-	return (fd);
-}
 
 static int	is_usless(char *str)
 {
@@ -76,51 +60,6 @@ static int	char_num_to_int(char *str)
 	return (res);
 }
 
-static void	fill_map(t_data *data, int line_nbr, t_list *tmp_map)
-{
-	t_list	*tmp_ptr;
-	int		i;
-
-	i = 0;
-	data->map.map = malloc(sizeof(char *) * (line_nbr + 1));
-	while (i < line_nbr)
-	{
-		data->map.map[i] = tmp_map->content;
-		tmp_map = tmp_map->next;
-		i++;
-	}
-	data->map.map[i] = NULL;
-	ft_lstclear(&tmp_ptr, NULL);
-}
-
-static void	get_map(int fd, t_data *data)
-{
-	t_list	*tmp_map;
-	t_list	*new_elem;
-	char	*line;
-	int		line_nbr;
-
-	line_nbr = 0;
-	tmp_map = NULL;
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		if (line[ft_strlen(line) - 1] == '\n')
-			line[ft_strlen(line) - 1] = '\0';
-		new_elem = ft_lstnew(line);
-		if (!new_elem)
-		{
-			free(line);
-			error("", 0);
-		}
-		ft_lstadd_back(&tmp_map, new_elem);
-		line_nbr++;
-	}
-	fill_map(data, line_nbr, tmp_map);
-}
-
 static void	init(int fd, t_data *data)
 {
 	char	*str;
@@ -156,8 +95,8 @@ void	parsing(char *name, t_data *data)
 
 	fd = open_map(name);
 	init(fd, data);
-	printf("no = %s\nso = %s\nwe = %s\nea = %s\nf = %d\nc = %d\n", data->sprites.no, data->sprites.so, data->sprites.we, data->sprites.ea, data->sprites.f, data->sprites.c);
-	int i= -1;
-	while (data->map.map[++i])
-		printf("%s\n", data->map.map[i]);
+	// printf("no = %s\nso = %s\nwe = %s\nea = %s\nf = %d\nc = %d\n", data->sprites.no, data->sprites.so, data->sprites.we, data->sprites.ea, data->sprites.f, data->sprites.c);
+	// int i= -1;
+	// while (data->map.map[++i])
+	// 	printf("%s\n", data->map.map[i]);
 }

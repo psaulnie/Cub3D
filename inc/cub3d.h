@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/16 15:17:53 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/06/20 17:53:44 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ typedef struct s_map
 	int		x_len;
 	int		y_len;
 }				t_map;
+
+typedef struct s_obj
+{
+	int	wall;
+	int	spawn;
+}			t_obj;
 
 typedef struct s_sprites
 {
@@ -83,6 +89,7 @@ void	parsing(char *name, t_data *data);
 
 /*	UTILS.C	*/
 
+int		open_map(char *name);
 void	error(char *str, int i);
 void	free_all(char **str);
 
@@ -93,5 +100,9 @@ void	pixel_put(t_data *data, int x, int y, int color);
 /*	START.C	*/
 
 void	start(t_data *data);
+
+/*	GET_PATH	*/
+
+void	get_map(int fd, t_data *data);
 
 #endif

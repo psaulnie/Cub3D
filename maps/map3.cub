@@ -1,0 +1,15 @@
+NO ../textutures/north.xpm
+SO ../textutures/south.xpm
+WE ../textutures/west.xpm
+EA ../textutures/east.xpm
+
+F 220,100,0
+C 225,30,0
+
+1111111
+1010001
+100N001
+1000001
+1000001
+1000001
+1111111

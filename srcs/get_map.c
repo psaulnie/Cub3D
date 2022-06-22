@@ -6,13 +6,13 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 17:50:29 by lbattest          #+#    #+#             */
-/*   Updated: 2022/06/20 18:10:07 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/06/22 11:22:43 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static void	check_map(t_data *data)
+void	check_map(t_data *data)
 {
 	int		x;
 	int		y;
@@ -52,22 +52,51 @@ static void	check_map(t_data *data)
 	}
 }
 
+static void	get_player_orientation(t_data *data, char c)
+{
+	if (c == 'N')
+		data->player.orientation = NORTH;
+	else if (c == 'W')
+		data->player.orientation = WEST;
+	else if (c == 'S')
+		data->player.orientation = SOUTH;
+	else if (c == 'E')
+		data->player.orientation = EAST;
+	else
+	{
+		ft_putstr_fd("Invalid map\n", 2);
+		exit(0); // à faire proprement
+	}
+}
+
 static void	fill_map(t_data *data, int line_nbr, t_list *tmp_map)
 {
 	t_list	*tmp_ptr;
 	int		i;
+	int		j;
 
 	i = 0;
 	data->map.map = malloc(sizeof(char *) * (line_nbr + 1));
 	while (i < line_nbr)
 	{
+		j = 0;
 		data->map.map[i] = tmp_map->content;
+		while (data->map.map[i][j])
+		{
+			if (ft_isalpha(data->map.map[i][j]))
+			{
+				data->player.pos_x = j;
+				data->player.pos_y = i;
+				get_player_orientation(data, data->map.map[i][j]);
+				data->map.map[i][j] = '0';
+			}
+			j++;
+		}
 		tmp_map = tmp_map->next;
 		i++;
 	}
 	data->map.map[i] = NULL;
 	ft_lstclear(&tmp_ptr, NULL);
-	check_map(data);
 }
 
 void	get_map(int fd, t_data *data)

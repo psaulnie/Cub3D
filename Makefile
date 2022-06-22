@@ -6,7 +6,7 @@
 #    By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 15:39:19 by psaulnie          #+#    #+#              #
-#    Updated: 2022/06/20 17:58:31 by lbattest         ###   ########.fr        #
+#    Updated: 2022/06/22 11:21:05 by lbattest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,11 @@ DIR_INCS	:=	inc
 DIR_LIBFT	:=	libft
 DIR_MLX		:=	mlx
 
-LST_SRCS	:=	main.c \
-				draw.c \
+LST_SRCS	:=	draw.c \
+				main.c \
 				start.c \
 				parsing.c \
+				textures.c \
 				utils.c \
 				get_map.c \
 

@@ -6,7 +6,7 @@
 #    By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 15:39:19 by psaulnie          #+#    #+#              #
-#    Updated: 2022/06/22 15:49:40 by psaulnie         ###   ########.fr        #
+#    Updated: 2022/06/22 16:01:28 by psaulnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ LST_SRCS	:=	draw.c \
 				start.c \
 				textures.c \
 				utils.c \
+				get_map.c \
 
 LST_OBJS	:=	$(LST_SRCS:.c=.o)
 

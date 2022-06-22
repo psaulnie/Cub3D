@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/22 14:05:35 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:58:24 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,11 @@ typedef struct s_screen
 	int	height;
 }				t_screen;
 
-typedef struct s_map
+typedef struct s_obj
 {
-	char	**map;
-	int		x_len;
-	int		y_len;
-}				t_map;
-
+	int	wall;
+	int	spawn;
+}			t_obj;
 typedef struct s_text
 {
 	void	*img;
@@ -114,10 +112,10 @@ typedef struct s_data
 	t_screen	screen;
 	t_player	player;
 	t_sprites	sprites;
-	t_map		map;
 	t_mlx		mlx;
 	t_algo		algo;
 	t_text		*text;
+	char		**map;
 	int			**texture;
 	int			floor_color;
 	int			ceiling_color;
@@ -133,6 +131,16 @@ typedef struct s_data
 /*	INPUT.C		*/
 
 int		input(int key, t_data *data);
+/*	PARSING.C	*/
+
+int		usless_line(char *str);
+void	parsing(char *name, t_data *data);
+
+/*	UTILS.C	*/
+
+int		open_map(char *name);
+void	error(char *str, int i);
+void	free_all(char **str);
 
 /*	DRAW.C	*/
 
@@ -152,6 +160,9 @@ void	start(t_data *data);
 
 void	load_textures(t_data *data);
 void	apply_textures(t_data *data);
+/*	GET_PATH	*/
+
+void	get_map(int fd, t_data *data, size_t max_len);
 
 /*	UTILS.C	*/
 

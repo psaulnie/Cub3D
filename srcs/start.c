@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:19:51 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/22 15:48:47 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:58:38 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static void	algo(t_data *data, t_pos pos)
 			data->algo.map.y += data->algo.step.y;
 			data->algo.side = 1;
 		}
-		if (data->map.map[(int)data->algo.map.x][(int)data->algo.map.y] == '1')
+		if (data->map[(int)data->algo.map.x][(int)data->algo.map.y] == '1')
 			data->algo.hit = 1;
 	}
 	if (data->algo.side == 0)

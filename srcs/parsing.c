@@ -6,29 +6,13 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:46:59 by lbattest          #+#    #+#             */
-/*   Updated: 2022/06/22 13:24:51 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:59:35 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static	int	open_map(char *name)
-{
-	int	i;
-	int	fd;
-
-	i = 0;
-	while (name[i + 4])
-		i++;
-	if (ft_strncmp(&name[i], ".cub", 4) != 0)
-		error("Error\nMap must finish with \".cub\"", 1);
-	fd = open(name, O_RDONLY);
-	if (fd < 0)
-		error("", 0);
-	return (fd);
-}
-
-static int	is_usless(char *str)
+int	usless_line(char *str)
 {
 	int	i;
 
@@ -76,81 +60,6 @@ static int	char_num_to_int(char *str)
 	return (res);
 }
 
-static void	get_player_orientation(t_data *data, char c)
-{
-	if (c == 'N')
-		data->player.orientation = NORTH;
-	else if (c == 'W')
-		data->player.orientation = WEST;
-	else if (c == 'S')
-		data->player.orientation = SOUTH;
-	else if (c == 'E')
-		data->player.orientation = EAST;
-	else
-	{
-		ft_putstr_fd("Invalid map\n", 2);
-		exit(0); // à faire proprement
-	}
-}
-
-static void	fill_map(t_data *data, int line_nbr, t_list *tmp_map)
-{
-	t_list	*tmp_ptr;
-	int		i;
-	int		j;
-
-	i = 0;
-	data->map.map = malloc(sizeof(char *) * (line_nbr + 1));
-	while (i < line_nbr)
-	{
-		j = 0;
-		data->map.map[i] = tmp_map->content;
-		while (data->map.map[i][j])
-		{
-			if (ft_isalpha(data->map.map[i][j]))
-			{
-				data->player.pos_x = j + 0.5;
-				data->player.pos_y = i + 0.5;
-				get_player_orientation(data, data->map.map[i][j]);
-				data->map.map[i][j] = '0';
-			}
-			j++;
-		}
-		tmp_map = tmp_map->next;
-		i++;
-	}
-	data->map.map[i] = NULL;
-	ft_lstclear(&tmp_ptr, NULL);
-}
-
-static void	get_map(int fd, t_data *data)
-{
-	t_list	*tmp_map;
-	t_list	*new_elem;
-	char	*line;
-	int		line_nbr;
-
-	line_nbr = 0;
-	tmp_map = NULL;
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		if (line[ft_strlen(line) - 1] == '\n')
-			line[ft_strlen(line) - 1] = '\0';
-		new_elem = ft_lstnew(line);
-		if (!new_elem)
-		{
-			free(line);
-			error("", 0);
-		}
-		ft_lstadd_back(&tmp_map, new_elem);
-		line_nbr++;
-	}
-	fill_map(data, line_nbr, tmp_map);
-}
-
 static void	init(int fd, t_data *data)
 {
 	char	*str;
@@ -162,7 +71,7 @@ static void	init(int fd, t_data *data)
 		str = get_next_line(fd);
 		if (!str)
 			break ;
-		if (is_usless(str) == 1)
+		if (usless_line(str) == 1)
 			continue ;
 		if (ft_strnstr(str, "NO ", 3) != 0 && i++ < 6)
 			data->sprites.no = get_path(str + 2);
@@ -177,7 +86,7 @@ static void	init(int fd, t_data *data)
 		else if (ft_strnstr(str, "C ", 2) != 0 && i++ < 6)
 			data->sprites.c = char_num_to_int(str + 1);
 	}
-	get_map(fd, data);
+	get_map(fd, data, 0);
 }
 
 void	parsing(char *name, t_data *data)
@@ -186,8 +95,8 @@ void	parsing(char *name, t_data *data)
 
 	fd = open_map(name);
 	init(fd, data);
-	printf("no = %s\nso = %s\nwe = %s\nea = %s\nf = %d\nc = %d\n", data->sprites.no, data->sprites.so, data->sprites.we, data->sprites.ea, data->sprites.f, data->sprites.c);
+	// printf("no = %s\nso = %s\nwe = %s\nea = %s\nf = %d\nc = %d\n", data->sprites.no, data->sprites.so, data->sprites.we, data->sprites.ea, data->sprites.f, data->sprites.c);
 	int i= -1;
-	while (data->map.map[++i])
-		printf("%s\n", data->map.map[i]);
+	while (data->map[++i])
+		printf("%s\n", data->map[i]);
 }

@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 13:22:46 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/22 13:24:31 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:59:22 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	input(int key, t_data *data)
 		exit(1);
 	if (key == 13)
 	{
-		if (data->map.map[(int)(data->algo.ray_pos.x + data->algo.dir.x
+		if (data->map[(int)(data->algo.ray_pos.x + data->algo.dir.x
 				* data->algo.move_speed)][(int)data->algo.ray_pos.y] == '0')
 			data->algo.ray_pos.x += data->algo.dir.x * data->algo.move_speed;
-		if (data->map.map[(int)(data->algo.ray_pos.x)][(int)(data->algo.ray_pos.y
+		if (data->map[(int)(data->algo.ray_pos.x)][(int)(data->algo.ray_pos.y
 				+ data->algo.dir.y * data->algo.move_speed)] == '0')
 			data->algo.ray_pos.y += data->algo.dir.y * data->algo.move_speed;
 	}
@@ -35,10 +35,10 @@ int	input(int key, t_data *data)
 	}
 	else if (key == 1)
 	{
-		if (data->map.map[(int)(data->algo.ray_pos.x - data->algo.dir.x
+		if (data->map[(int)(data->algo.ray_pos.x - data->algo.dir.x
 				* data->algo.move_speed)][(int)data->algo.ray_pos.y] == '0')
 			data->algo.ray_pos.x -= data->algo.dir.x * data->algo.move_speed;
-		if (data->map.map[(int)(data->algo.ray_pos.x)][(int)(data->algo.ray_pos.y
+		if (data->map[(int)(data->algo.ray_pos.x)][(int)(data->algo.ray_pos.y
 				- data->algo.dir.y * data->algo.move_speed)] == '0')
 			data->algo.ray_pos.y -= data->algo.dir.y * data->algo.move_speed;
 	}

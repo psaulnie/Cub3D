@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 10:18:05 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/22 15:30:21 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/23 12:57:57 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	loader(t_data *data, t_orientation orien, char *path)
 {
+	if (path[ft_strlen(path) - 1] == '\n')
+		path[ft_strlen(path) - 1] = '\0';
 	data->text[orien].img = mlx_xpm_file_to_image(data->mlx.mlx,
 			path, &data->text[orien].img_width, &data->text[orien].img_height);
 	if (data->text[orien].img == NULL)
@@ -31,10 +33,6 @@ static void	loader(t_data *data, t_orientation orien, char *path)
 		ft_putendl_fd("Error\nOne of the texture don't have the good resolution", 2);
 		exit(0); // à faire proprement
 	}
-	// data->texture = malloc(sizeof(int *) * 4);
-	// data->texture[orien] = (int *)data->text[orien].img;
-	// mlx_destroy_image(data->mlx.mlx, &data->text[orien].img);
-	// printf("A\n");
 }
 
 void	load_textures(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/23 12:31:51 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/23 12:58:50 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,14 +99,10 @@ static t_data	set_orientation(t_data data)
 	return (data);
 }
 
-static t_data	init(char **tmp_map)
+static t_data	init(void)
 {
 	t_data	data;
 
-	(void)tmp_map;
-	data.floor_color = 0xFFC3C5;
-	data.ceiling_color = 0xC3FFE1;
-	// data.map.map = tmp_map;
 	data.screen.height = 720;
 	data.screen.width = 1280;
 	data.algo.move_speed = 0.1;
@@ -118,29 +114,18 @@ static t_data	init(char **tmp_map)
 int	main(int argc, char *argv[])
 {
 	t_data	data;
-	char	*tmp_map[] = {
-		"1111111",
-		"1010001",
-		"1000001",
-		"1000001",
-		"1000001",
-		"1000001",
-		"1111111", NULL};
 
-	data = init(tmp_map);
-	data.mlx.mlx = mlx_init();
 	if (argc != 2)
 		return (1);
+	data = init();
+	data.mlx.mlx = mlx_init();
 	parsing(argv[1], &data);
 	load_textures(&data);
 	set_texture(&data);
 	apply_textures(&data);
-	// data.map.map = tmp_map;
 	data = set_orientation(data);
-	data.screen.height = 720;
-	data.screen.width = 1280;
-	// data.player.pos_x = 18;
-	// data.player.pos_y = 3;
+	data.ceiling_color = data.sprites.c;
+	data.floor_color = data.sprites.f;
 	data.algo.ray_pos.x = data.player.pos_y;
 	data.algo.ray_pos.y = data.player.pos_x;
 	start(&data);

@@ -6,24 +6,11 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:46:59 by lbattest          #+#    #+#             */
-/*   Updated: 2022/06/22 15:59:35 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/23 12:41:50 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-int	usless_line(char *str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-	{
-		if (!(str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r')))
-			return (0);
-	}
-	return (1);
-}
 
 static char	*get_path(char *str)
 {
@@ -36,9 +23,7 @@ static char	*get_path(char *str)
 	while ((str[start] == ' ' || (str[start] >= '\t' && str[start] <= '\r')))
 		start++;
 	end = ft_strlen(str);
-	while (end > start && ft_strncmp(&str[end], ".xpm", 4) != 0)
-		end--;
-	if (ft_strncmp(&str[end], ".xpm", 4) != 0)
+	if (ft_strncmp(&str[end - 5], ".xpm\n", 5) != 0)
 		error("Error\nTexture must finish with \".xpm\"", 1);
 	path = ft_stridup(str, start, end + 4);
 	if (!path)
@@ -46,45 +31,73 @@ static char	*get_path(char *str)
 	return (path);
 }
 
+static void	valid_nbr(char **tab)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (tab[++i])
+	{
+		j = -1;
+		while (tab[i][++j])
+			if (!ft_isdigit(tab[i][j]) && tab[i][j] != '\n')
+				error("Error\nInvalid map", 1);
+	}
+	if (i != 3)
+		error("Error\nInvalid map", 1);
+}
+
 static int	char_num_to_int(char *str)
 {
 	int		res;
+	int		nbr;
 	char	**tab;
 
 	tab = ft_split(str, ',');
+	valid_nbr(tab);
 	res = 0;
-	res |= ((int)ft_atoi(tab[0])) << 16;
-	res |= ((int)ft_atoi(tab[1])) << 8;
-	res |= (int)ft_atoi(tab[2]);
+	nbr = (int)ft_atoi(tab[0]);
+	if (nbr < 0 || nbr > 255)
+		error("Error\nInvalid map", 1);
+	res |= nbr << 16;
+	nbr = (int)ft_atoi(tab[1]);
+	if (nbr < 0 || nbr > 255)
+		error("Error\nInvalid map", 1);
+	res |= nbr << 8;
+	nbr = (int)ft_atoi(tab[2]);
+	if (nbr < 0 || nbr > 255)
+		error("Error\nInvalid map", 1);
+	res |= nbr;
 	free_all(tab);
 	return (res);
 }
 
-static void	init(int fd, t_data *data)
+static void	init(int fd, t_data *data, int i)
 {
-	char	*str;
-	int		i;
-
-	i = 0;
 	while (i < 6)
 	{
-		str = get_next_line(fd);
-		if (!str)
+		data->buf = get_next_line(fd);
+		if (!data->buf)
 			break ;
-		if (usless_line(str) == 1)
+		if (usless_line(data->buf) == 1)
+		{
+			free(data->buf);
 			continue ;
-		if (ft_strnstr(str, "NO ", 3) != 0 && i++ < 6)
-			data->sprites.no = get_path(str + 2);
-		else if (ft_strnstr(str, "SO ", 3) != 0 && i++ < 6)
-			data->sprites.so = get_path(str + 2);
-		else if (ft_strnstr(str, "WE ", 3) != 0 && i++ < 6)
-			data->sprites.we = get_path(str + 2);
-		else if (ft_strnstr(str, "EA ", 3) != 0 && i++ < 6)
-			data->sprites.ea = get_path(str + 2);
-		else if (ft_strnstr(str, "F ", 2) != 0 && i++ < 6)
-			data->sprites.f = char_num_to_int(str + 1);
-		else if (ft_strnstr(str, "C ", 2) != 0 && i++ < 6)
-			data->sprites.c = char_num_to_int(str + 1);
+		}
+		if (ft_strnstr(data->buf, "NO ", 3) != 0 && i++ < 6)
+			data->sprites.no = get_path(data->buf + 2);
+		else if (ft_strnstr(data->buf, "SO ", 3) != 0 && i++ < 6)
+			data->sprites.so = get_path(data->buf + 2);
+		else if (ft_strnstr(data->buf, "WE ", 3) != 0 && i++ < 6)
+			data->sprites.we = get_path(data->buf + 2);
+		else if (ft_strnstr(data->buf, "EA ", 3) != 0 && i++ < 6)
+			data->sprites.ea = get_path(data->buf + 2);
+		else if (ft_strnstr(data->buf, "F ", 2) != 0 && i++ < 6)
+			data->sprites.f = char_num_to_int(data->buf + 2);
+		else if (ft_strnstr(data->buf, "C ", 2) != 0 && i++ < 6)
+			data->sprites.c = char_num_to_int(data->buf + 2);
+		free(data->buf);
 	}
 	get_map(fd, data, 0);
 }
@@ -94,9 +107,5 @@ void	parsing(char *name, t_data *data)
 	int	fd;
 
 	fd = open_map(name);
-	init(fd, data);
-	// printf("no = %s\nso = %s\nwe = %s\nea = %s\nf = %d\nc = %d\n", data->sprites.no, data->sprites.so, data->sprites.we, data->sprites.ea, data->sprites.f, data->sprites.c);
-	int i= -1;
-	while (data->map[++i])
-		printf("%s\n", data->map[i]);
+	init(fd, data, 0);
 }

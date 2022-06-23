@@ -1,10 +1,10 @@
-NO ./textures/debug64x128.xpm
+NO ./textures/north.xpm
 SO ./textures/south.xpm
 WE ./textures/west.xpm
 EA ./textures/east.xpm
 
-F 220,100,0
-C 225,30,0
+F 221,161,239
+C 178,244,252
 
 1111111
 1010001

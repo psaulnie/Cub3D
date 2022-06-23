@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 17:50:29 by lbattest          #+#    #+#             */
-/*   Updated: 2022/06/22 17:08:07 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/06/23 12:34:10 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	get_player_orientation(t_data *data, int y, int x)
 	data->map[y][x] = '0';
 }
 
-static void	map_close(t_data *data, int y, int x)
+static void	map_close(t_data *data, int y, int x, int spawn)
 {
 	int	i;
 
@@ -38,6 +38,9 @@ static void	map_close(t_data *data, int y, int x)
 	{
 		while (data->map[y][++i])
 			if (data->map[y][i] != '1')
+				error("Error\nInvalid map", 1);
+		if (!data->map[y + 1])
+			if (spawn == 0)
 				error("Error\nInvalid map", 1);
 	}
 	else
@@ -51,10 +54,10 @@ static void	check_map(t_data *data, size_t max_len)
 {
 	int		x;
 	int		y;
-	t_obj	obj;
+	int		spawn;
 
 	y = -1;
-	obj.spawn = 0;
+	spawn = 0;
 	while (data->map[++y])
 	{
 		x = -1;
@@ -64,15 +67,15 @@ static void	check_map(t_data *data, size_t max_len)
 				data->map[y][x++] = '1';
 			if (ft_isalpha(data->map[y][x]))
 			{
-				obj.spawn++;
+				spawn++;
 				get_player_orientation(data, y, x);
 			}
 			if ((data->map[y][x] != '1' && data->map[y][x] != '0') ||
-				obj.spawn > 1)
+				spawn > 1)
 				error("Error\nInvalid map", 1);
 		}
 		data->map[y][x] = '\0';
-		map_close(data, y, x);
+		map_close(data, y, x, spawn);
 	}
 }
 

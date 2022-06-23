@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/22 15:34:52 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/06/23 12:34:26 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,6 @@ typedef struct s_screen
 	int	height;
 }				t_screen;
 
-typedef struct s_obj
-{
-	int	wall;
-	int	spawn;
-}			t_obj;
 typedef struct s_text
 {
 	void	*img;
@@ -116,6 +111,7 @@ typedef struct s_data
 	t_mlx		mlx;
 	t_algo		algo;
 	t_text		*text;
+	char		*buf;
 	char		**map;
 	int			**texture;
 	int			floor_color;

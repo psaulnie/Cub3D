@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 14:19:49 by lbattest          #+#    #+#             */
-/*   Updated: 2022/06/22 11:18:07 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/06/23 12:04:23 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,19 @@ void	free_all(char **str)
 	return ;
 }
 
+int	usless_line(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (!(str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r')))
+			return (0);
+	}
+	return (1);
+}
+
 int	open_map(char *name)
 {
 	int	i;
@@ -40,6 +53,8 @@ int	open_map(char *name)
 	i = 0;
 	while (name[i + 4])
 		i++;
+	if (ft_strlen(name) < 5)
+		error("Error\nInvalid map name", 1);
 	if (ft_strncmp(&name[i], ".cub", 4) != 0)
 		error("Error\nMap must finish with \".cub\"", 1);
 	fd = open(name, O_RDONLY);

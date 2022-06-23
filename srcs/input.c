@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 13:22:46 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/22 15:59:22 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:46:20 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	input(int key, t_data *data)
 	}
 	else if (key == 0)
 	{
-		data->algo.ray_pos.x += data->algo.dir.x * data->algo.move_speed;
+		data->algo.ray_pos.x += data->algo.dir.y * data->algo.move_speed;
 		data->algo.ray_pos.y += data->algo.dir.x * data->algo.move_speed;
 	}
 	else if (key == 1)

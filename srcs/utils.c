@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 18:01:12 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/23 12:41:53 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:18:14 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	error(char *str, int i)
 		ft_putendl_fd(str, 2);
 	exit (1);
 }
-
 
 void	free_all(char **str)
 {

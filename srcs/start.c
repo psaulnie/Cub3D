@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:19:51 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/22 15:58:38 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:13:52 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ static void	algo(t_data *data, t_pos pos)
 	if (data->algo.side == 0 && data->algo.ray_dir.x > 0)
 		text_x = data->text[texture].img_width - text_x - 1;
 	if (data->algo.side == 1 && data->algo.ray_dir.y < 0)
-		text_x =data->text[texture].img_width - text_x - 1;
+		text_x = data->text[texture].img_width - text_x - 1;
 	double	step = 1.0 * data->text[texture].img_height / line_height;
 	double	text_pos = (start - data->screen.height / 2 + line_height / 2) * step;
 	int	y = 0;
@@ -141,7 +141,7 @@ static void	algo(t_data *data, t_pos pos)
 		text_y = (int)text_pos & (data->text[texture].img_height - 1);
 		text_pos += step;
 		data->algo.buffer[y][(int)pos.x] = data->texture[texture]
-		[data->text[texture].img_height * text_y + text_x];
+		[data->text[texture].img_width * text_y + text_x];
 		y++;
 	}
 	while (y < data->screen.height)

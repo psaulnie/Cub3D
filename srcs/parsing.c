@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:46:59 by lbattest          #+#    #+#             */
-/*   Updated: 2022/06/23 12:41:50 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:35:24 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*get_path(char *str)
 	end = ft_strlen(str);
 	if (ft_strncmp(&str[end - 5], ".xpm\n", 5) != 0)
 		error("Error\nTexture must finish with \".xpm\"", 1);
-	path = ft_stridup(str, start, end + 4);
+	path = ft_stridup(str, start, end - 1);
 	if (!path)
 		error("", 0);
 	return (path);

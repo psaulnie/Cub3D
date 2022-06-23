@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 10:18:05 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/23 12:57:57 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:15:18 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static void	loader(t_data *data, t_orientation orien, char *path)
 {
-	if (path[ft_strlen(path) - 1] == '\n')
-		path[ft_strlen(path) - 1] = '\0';
 	data->text[orien].img = mlx_xpm_file_to_image(data->mlx.mlx,
 			path, &data->text[orien].img_width, &data->text[orien].img_height);
 	if (data->text[orien].img == NULL)
@@ -51,26 +49,31 @@ void	load_textures(t_data *data)
 
 void	apply_textures(t_data *data)
 {
-	int	i;
 	int	j;
-	int	y;
+	// int	i;
+	// int	y;
+	// int	largest;
 
 	j = 0;
 	while (j < 4)
 	{
-		y = 0;
-		while (y < data->text[j].img_width)
-		{
-			i = 0;
-			while (i < data->text[j].img_height)
-			{
-				data->texture[j][data->text[j].img_width
-					* y + i] = data->text[j].addr[data->text[j].img_width
-					* y + i];
-				i++;
-			}
-			y++;
-		}
+		data->texture[j] = data->text[j].addr;
+		// y = 0;
+		// largest = data->text[j].img_width;
+		// if (data->text[j].img_width > data->text[j].img_height)
+		// 	largest = data->text[j].img_height;
+		// while (y < data->text[j].img_height)
+		// {
+		// 	i = 0;
+		// 	while (i < data->text[j].img_width)
+		// 	{
+		// 		data->texture[j][largest
+		// 			* y + i] = data->text[j].addr[data->text[j].img_width
+		// 			* y + i];
+		// 		i++;
+		// 	}
+		// 	y++;
+		// }
 		j++;
 	}
 }

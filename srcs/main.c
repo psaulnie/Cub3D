@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/23 12:58:50 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:17:03 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,29 @@ static int	**set_buffer(t_screen screen)
 static void	set_texture(t_data *data)
 {
 	int		i;
-	int		j;
-	int		largest;
+	// int		j;
+	// int		largest;
 
 	i = 0;
 	data->texture = malloc(sizeof(int *) * (sizeof(int *) * 4));
 	if (!data->texture)
 		exit(1); // à faire proprement
-	while (i < 4)
-	{
-		largest = data->text[i].img_width;
-		if (data->text[i].img_height > data->text[i].img_width)
-			largest = data->text[i].img_height;
-		data->texture[i] = (int *)malloc(sizeof(int) * largest * largest);
-		if (!data->texture[i])
-			exit(1); // à faire proprement
-		j = 0;
-		while (j < largest * largest)
-		{
-			data->texture[i][j] = 0;
-			j++;
-		}
-		i++;
-	}
+	// while (i < 4)
+	// {
+	// 	largest = data->text[i].img_width;
+	// 	if (data->text[i].img_height > data->text[i].img_width)
+	// 		largest = data->text[i].img_height;
+	// 	data->texture[i] = (int *)malloc(sizeof(int) * data->text[i].img_height * data->text[i].img_width);
+	// 	if (!data->texture[i])
+	// 		exit(1); // à faire proprement
+	// 	j = 0;
+	// 	while (j < data->text[i].img_width * data->text[i].img_height)
+	// 	{
+	// 		data->texture[i][j] = 0;
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
 }
 
 static t_data	set_orientation(t_data data)

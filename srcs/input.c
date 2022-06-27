@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 13:22:46 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/27 15:44:57 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:25:44 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	input(int key, t_data *data)
 	t_pos	old_plane;
 
 	if (key == 53)
-		exit(1);
+		destroy_mouse(data);
 	if (key == 13)
 	{
 		if (data->map[(int)(data->algo.ray_pos.x + data->algo.dir.x

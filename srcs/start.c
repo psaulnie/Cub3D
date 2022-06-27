@@ -6,17 +6,11 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:19:51 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/27 15:38:19 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:10:29 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-int	destroy_mouse(t_data *data)
-{
-	(void)data;
-	exit(1);
-}
 
 static int	algo_loop(t_data *data)
 {

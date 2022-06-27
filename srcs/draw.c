@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:36:43 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/27 15:34:09 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:28:27 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	draw(t_data *data)
 		x = 0;
 		while (x < data->screen.width)
 		{
-			data->mlx.addr[y * data->screen.width + x] = data->algo.buffer[y][x];
+			data->mlx.addr[y * data->screen.width + x] = data->algo.buffer
+			[y][x];
 			x++;
 		}
 		y++;
@@ -42,10 +43,12 @@ void	draw_line(t_data *data, t_pos pos)
 	}
 	while (y < data->algo.end)
 	{
-		data->algo.text_y = (int)data->algo.text_pos & (data->text[data->algo.texture].img_height - 1);
+		data->algo.text_y = (int)data->algo.text_pos
+			& (data->text[data->algo.texture].img_height - 1);
 		data->algo.text_pos += data->algo.step_text;
 		data->algo.buffer[y][(int)pos.x] = data->texture[data->algo.texture]
-		[data->text[data->algo.texture].img_width * data->algo.text_y + data->algo.text_x];
+		[data->text[data->algo.texture].img_width * data->algo.text_y
+			+ data->algo.text_x];
 		y++;
 	}
 	while (y < data->screen.height)

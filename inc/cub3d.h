@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/27 15:37:39 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:30:49 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include <stdlib.h>
 # include <math.h>
 # include <fcntl.h>
-# include <stdio.h>
-// STDIO to remove
 
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
@@ -139,6 +137,10 @@ void	algo(t_data *data, t_pos pos);
 /*	ALGO_UTILS.C	*/
 
 int		get_wall_text(t_data *data);
+
+/*	DESTROY.C	*/
+
+int		destroy_mouse(t_data *data);
 
 /*	INPUT.C		*/
 

@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:35:22 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/27 16:01:44 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:09:27 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static void	set_dir(t_data *data)
 	else
 	{
 		data->algo.step.x = 1;
-		data->algo.side_dist.x = ((int)data->algo.map.x + 1.0 - data->algo.ray_pos.x)
-			* data->algo.delta_dist.x;
+		data->algo.side_dist.x = ((int)data->algo.map.x + 1.0
+				- data->algo.ray_pos.x) * data->algo.delta_dist.x;
 	}
 	if (data->algo.ray_dir.y < 0)
 	{
@@ -57,8 +57,8 @@ static void	set_dir(t_data *data)
 	else
 	{
 		data->algo.step.y = 1;
-		data->algo.side_dist.y = ((int)data->algo.map.y + 1.0 - data->algo.ray_pos.y)
-			* data->algo.delta_dist.y;
+		data->algo.side_dist.y = ((int)data->algo.map.y + 1.0
+				- data->algo.ray_pos.y) * data->algo.delta_dist.y;
 	}
 }
 
@@ -104,12 +104,15 @@ void	algo(t_data *data, t_pos pos)
 	init_value(data, pos);
 	dda_algo(data);
 	if (data->algo.side == 0)
-		data->algo.perp_wall_dist = ((int)data->algo.map.x - data->algo.ray_pos.x
-				+ (1 - data->algo.step.x) / 2) / data->algo.ray_dir.x;
+		data->algo.perp_wall_dist = ((int)data->algo.map.x
+				- data->algo.ray_pos.x + (1 - data->algo.step.x) / 2)
+			/ data->algo.ray_dir.x;
 	else
-		data->algo.perp_wall_dist = ((int)data->algo.map.y - data->algo.ray_pos.y
-				+ (1 - data->algo.step.y) / 2) / data->algo.ray_dir.y;
-	data->algo.line_height = (int)(data->screen.height / data->algo.perp_wall_dist);
+		data->algo.perp_wall_dist = ((int)data->algo.map.y
+				- data->algo.ray_pos.y + (1 - data->algo.step.y) / 2)
+			/ data->algo.ray_dir.y;
+	data->algo.line_height = (int)(data->screen.height
+			/ data->algo.perp_wall_dist);
 	data->algo.start = (-data->algo.line_height / 2 + data->screen.height / 2);
 	data->algo.end = (data->algo.line_height / 2 + data->screen.height / 2);
 	if (data->algo.start < 0)

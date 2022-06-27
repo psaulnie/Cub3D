@@ -6,7 +6,7 @@
 #    By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 15:39:19 by psaulnie          #+#    #+#              #
-#    Updated: 2022/06/27 15:39:18 by psaulnie         ###   ########.fr        #
+#    Updated: 2022/06/27 16:22:04 by psaulnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	:=	cub3d
 
 CC		:=	gcc
 CFLAGS	:=	-Wall -Wextra -Werror
-CFLAGS	+= -fsanitize=address -g3
+# CFLAGS	+= -fsanitize=address -g3
 
 DIR_SRCS	:=	srcs
 DIR_OBJS	:=	.objs
@@ -25,6 +25,7 @@ DIR_MLX		:=	mlx
 
 LST_SRCS	:=	algo.c \
 				algo_utils.c \
+				destroy.c \
 				draw.c \
 				input.c \
 				main.c \

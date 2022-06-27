@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 13:22:46 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/23 13:46:20 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:44:57 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ int	input(int key, t_data *data)
 	mlx_destroy_image(data->mlx.mlx, data->mlx.img);
 	data->mlx.img = mlx_new_image(data->mlx.mlx, data->screen.width,
 			data->screen.height);
-	data->mlx.addr = (int *)mlx_get_data_addr(data->mlx.img, &data->mlx.bits_per_pixel,
-			&data->mlx.line_length, &data->mlx.endian);
+	data->mlx.addr = (int *)mlx_get_data_addr(data->mlx.img,
+			&data->mlx.bits_per_pixel, &data->mlx.line_length,
+			&data->mlx.endian);
 	return (0);
 }

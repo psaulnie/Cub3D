@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/23 14:56:04 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/27 15:37:39 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,15 @@ typedef struct s_algo
 	double	camera_x;
 	double	move_speed;
 	double	rot_speed;
+	double	wall_x;
+	int		text_x;
+	int		text_y;
+	double	step_text;
+	double	text_pos;
+	double	line_height;
+	int		start;
+	int		end;
+	int		texture;
 }				t_algo;
 
 typedef struct s_data
@@ -123,6 +132,14 @@ typedef struct s_data
 /*						   */
 /***************************/
 
+/*	ALGO.C		*/
+
+void	algo(t_data *data, t_pos pos);
+
+/*	ALGO_UTILS.C	*/
+
+int		get_wall_text(t_data *data);
+
 /*	INPUT.C		*/
 
 int		input(int key, t_data *data);
@@ -140,7 +157,7 @@ void	free_all(char **str);
 /*	DRAW.C	*/
 
 void	draw(t_data *data);
-void	draw_line(t_data *data, t_pos start, t_pos end, int color);
+void	draw_line(t_data *data, t_pos pos);
 void	pixel_put(t_data *data, int x, int y, int color);
 
 /*	PARSING.C	*/

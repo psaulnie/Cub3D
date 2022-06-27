@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 10:18:05 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/23 15:15:18 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:18:09 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,30 +50,14 @@ void	load_textures(t_data *data)
 void	apply_textures(t_data *data)
 {
 	int	j;
-	// int	i;
-	// int	y;
-	// int	largest;
 
+	data->texture = malloc(sizeof(int *) * (sizeof(int *) * 4));
+	if (!data->texture)
+		exit(1); // à faire proprement
 	j = 0;
 	while (j < 4)
 	{
 		data->texture[j] = data->text[j].addr;
-		// y = 0;
-		// largest = data->text[j].img_width;
-		// if (data->text[j].img_width > data->text[j].img_height)
-		// 	largest = data->text[j].img_height;
-		// while (y < data->text[j].img_height)
-		// {
-		// 	i = 0;
-		// 	while (i < data->text[j].img_width)
-		// 	{
-		// 		data->texture[j][largest
-		// 			* y + i] = data->text[j].addr[data->text[j].img_width
-		// 			* y + i];
-		// 		i++;
-		// 	}
-		// 	y++;
-		// }
 		j++;
 	}
 }

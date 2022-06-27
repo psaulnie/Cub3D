@@ -6,7 +6,7 @@
 #    By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 15:39:19 by psaulnie          #+#    #+#              #
-#    Updated: 2022/06/23 15:02:33 by psaulnie         ###   ########.fr        #
+#    Updated: 2022/06/27 15:39:18 by psaulnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ DIR_INCS	:=	inc
 DIR_LIBFT	:=	libft
 DIR_MLX		:=	mlx
 
-LST_SRCS	:=	draw.c \
+LST_SRCS	:=	algo.c \
+				algo_utils.c \
+				draw.c \
 				input.c \
 				main.c \
 				parsing.c \

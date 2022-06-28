@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/14 14:19:49 by lbattest          #+#    #+#             */
-/*   Updated: 2022/06/23 12:04:23 by lbattest         ###   ########.fr       */
+/*   Created: 2022/06/09 18:01:12 by psaulnie          #+#    #+#             */
+/*   Updated: 2022/06/23 13:18:14 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	free_all(char **str)
 		free(str[i++]);
 	free(str);
 	return ;
+}
+
+int	is_power_of_two(int x)
+{
+	return ((x & (x - 1)) == 0);
 }
 
 int	usless_line(char *str)

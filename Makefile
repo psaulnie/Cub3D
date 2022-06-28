@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+         #
+#    By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 15:39:19 by psaulnie          #+#    #+#              #
-#    Updated: 2022/06/22 15:46:34 by lbattest         ###   ########.fr        #
+#    Updated: 2022/06/27 16:22:04 by psaulnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,14 @@ DIR_INCS	:=	inc
 DIR_LIBFT	:=	libft
 DIR_MLX		:=	mlx
 
-LST_SRCS	:=	draw.c \
+LST_SRCS	:=	algo.c \
+				algo_utils.c \
+				destroy.c \
+				draw.c \
+				input.c \
 				main.c \
-				start.c \
 				parsing.c \
+				start.c \
 				textures.c \
 				utils.c \
 				get_map.c \

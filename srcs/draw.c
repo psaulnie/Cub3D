@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:36:43 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/20 12:44:37 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:28:27 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,32 +23,38 @@ void	draw(t_data *data)
 		x = 0;
 		while (x < data->screen.width)
 		{
-			data->mlx.addr[y * data->screen.width + x] = data->algo.buffer[y][x];
+			data->mlx.addr[y * data->screen.width + x] = data->algo.buffer
+			[y][x];
 			x++;
 		}
 		y++;
 	}
 }
 
-void	draw_line(t_data *data, t_pos start, t_pos end, int color)
+void	draw_line(t_data *data, t_pos pos)
 {
-	int	i;
+	int	y;
 
-	i = 0;
-	while (i != start.y)
+	y = 0;
+	while (y < data->algo.start && y < 720)
 	{
-		pixel_put(data, start.x, i, data->ceiling_color);
-		i++;
+		data->algo.buffer[y][(int)pos.x] = data->ceiling_color;
+		y++;
 	}
-	while (end.y != i)
+	while (y < data->algo.end)
 	{
-		pixel_put(data, start.x, i, color);
-		i++;
+		data->algo.text_y = (int)data->algo.text_pos
+			& (data->text[data->algo.texture].img_height - 1);
+		data->algo.text_pos += data->algo.step_text;
+		data->algo.buffer[y][(int)pos.x] = data->texture[data->algo.texture]
+		[data->text[data->algo.texture].img_width * data->algo.text_y
+			+ data->algo.text_x];
+		y++;
 	}
-	while (i != data->screen.height)
+	while (y < data->screen.height)
 	{
-		pixel_put(data, start.x, i, data->floor_color);
-		i++;
+		data->algo.buffer[y][(int)pos.x] = data->floor_color;
+		y++;
 	}
 }
 

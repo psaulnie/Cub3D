@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/23 12:34:26 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/06/28 10:40:39 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,10 @@
 
 # include <stdlib.h>
 # include <math.h>
-# include "../libft/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
-// STDIO to remove
-
-
-# include "../mlx/mlx.h"
 # include "../libft/libft.h"
+# include "../mlx/mlx.h"
 
 typedef enum e_orientation
 {
@@ -101,6 +97,15 @@ typedef struct s_algo
 	double	camera_x;
 	double	move_speed;
 	double	rot_speed;
+	double	wall_x;
+	int		text_x;
+	int		text_y;
+	double	step_text;
+	double	text_pos;
+	double	line_height;
+	int		start;
+	int		end;
+	int		texture;
 }				t_algo;
 
 typedef struct s_data
@@ -118,7 +123,6 @@ typedef struct s_data
 	int			ceiling_color;
 }				t_data;
 
-void	load_textures(t_data *data);
 
 /***************************/
 /*						   */
@@ -126,6 +130,21 @@ void	load_textures(t_data *data);
 /*						   */
 /***************************/
 
+/*	ALGO.C		*/
+
+void	algo(t_data *data, t_pos pos);
+
+/*	ALGO_UTILS.C	*/
+
+int		get_wall_text(t_data *data);
+
+/*	DESTROY.C	*/
+
+int		destroy_mouse(t_data *data);
+
+/*	INPUT.C		*/
+
+int		input(int key, t_data *data);
 /*	PARSING.C	*/
 
 int		usless_line(char *str);
@@ -140,19 +159,29 @@ void	free_all(char **str);
 /*	DRAW.C	*/
 
 void	draw(t_data *data);
-void	draw_line(t_data *data, t_pos start, t_pos end, int color);
+void	draw_line(t_data *data, t_pos pos);
 void	pixel_put(t_data *data, int x, int y, int color);
+
+/*	PARSING.C	*/
+
+void	parsing(char *name, t_data *data);
 
 /*	START.C	*/
 
 void	start(t_data *data);
 
+/*	TEXTURES.C	*/
+
+void	load_textures(t_data *data);
+void	apply_textures(t_data *data);
 /*	GET_PATH	*/
 
 void	get_map(int fd, t_data *data, size_t max_len);
 
 /*	UTILS.C	*/
 
-double	degree_to_radians(double degree);
+void	error(char *str, int i);
+void	free_all(char **str);
+int		is_power_of_two(int x);
 
 #endif

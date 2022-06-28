@@ -6,7 +6,7 @@
 #    By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 15:39:19 by psaulnie          #+#    #+#              #
-#    Updated: 2022/06/27 16:22:04 by psaulnie         ###   ########.fr        #
+#    Updated: 2022/06/28 16:40:21 by psaulnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ LST_SRCS	:=	algo.c \
 				destroy.c \
 				draw.c \
 				input.c \
+				input_movement.c \
 				main.c \
 				parsing.c \
 				start.c \

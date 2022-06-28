@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/27 16:30:49 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:41:26 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
@@ -145,6 +146,14 @@ int		destroy_mouse(t_data *data);
 /*	INPUT.C		*/
 
 int		input(int key, t_data *data);
+
+/*	INPUT_MOVEMENT.C	*/
+
+void	go_forward(t_data *data);
+void	go_backward(t_data *data);
+void	go_left(t_data *data);
+void	go_right(t_data *data);
+
 /*	PARSING.C	*/
 
 int		usless_line(char *str);

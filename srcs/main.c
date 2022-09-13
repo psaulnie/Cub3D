@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/23 17:05:32 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:58:25 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	**set_buffer(t_screen screen)
 	return (buffer);
 }
 
-static t_data	set_orientation(t_data data)
+static t_data	set_orientation_nw(t_data data)
 {
 	if (data.player.orientation == NORTH)
 	{
@@ -54,6 +54,13 @@ static t_data	set_orientation(t_data data)
 		data.algo.plane.x = -0.66;
 		data.algo.plane.y = 0;
 	}
+	return (data);
+}
+
+static t_data	set_orientation(t_data data)
+{
+	if (data.player.orientation == NORTH || data.player.orientation == WEST)
+		return (set_orientation_nw(data));
 	else if (data.player.orientation == SOUTH)
 	{
 		data.algo.dir.x = 1;

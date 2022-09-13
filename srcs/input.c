@@ -6,13 +6,13 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 13:22:46 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/28 16:42:58 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/28 17:00:45 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	turn_left(t_data *data)
+static void	turn_left(t_data *data)
 {
 	t_pos	old_dir;
 	t_pos	old_plane;
@@ -29,7 +29,7 @@ void	turn_left(t_data *data)
 		+ data->algo.plane.y * cos(data->algo.rot_speed);
 }
 
-void	turn_right(t_data *data)
+static void	turn_right(t_data *data)
 {
 	t_pos	old_dir;
 	t_pos	old_plane;

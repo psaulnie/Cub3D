@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/28 16:41:26 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:56:16 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ typedef struct s_data
 	int			floor_color;
 	int			ceiling_color;
 }				t_data;
-
 
 /***************************/
 /*						   */

@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/28 16:56:16 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:08:23 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <math.h>
 # include <fcntl.h>
 # include <stdio.h>
-
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 

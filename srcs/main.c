@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/28 16:58:25 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:40:14 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,25 @@ static int	**set_buffer(t_screen screen)
 	int		i;
 	int		j;
 
-	i = 0;
+	i = -1;
 	buffer = malloc(sizeof(int *) * (sizeof(int *) * screen.height));
 	if (!buffer)
-		exit(1); // à faire proprement
-	while (i < screen.height)
+	{
+		ft_putendl_fd("Error\nMalloc error", 2);
+		exit(1);
+	}
+	while (++i < screen.height)
 	{
 		buffer[i] = malloc(sizeof(int) * screen.width);
 		if (!buffer[i])
-			exit(1); // à faire proprement
-		j = 0;
-		while (j < screen.width)
 		{
-			buffer[i][j] = 0;
-			j++;
+			ft_putendl_fd("Error\nMalloc error", 2);
+			free(buffer);
+			exit(1);
 		}
-		i++;
+		j = -1;
+		while (++j < screen.width)
+			buffer[i][j] = 0;
 	}
 	return (buffer);
 }

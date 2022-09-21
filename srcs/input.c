@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 13:22:46 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/27 16:25:44 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/06/28 12:01:47 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	input(int key, t_data *data)
 	}
 	else if (key == 0)
 	{
+		
 		data->algo.ray_pos.x += data->algo.dir.y * data->algo.move_speed;
 		data->algo.ray_pos.y += data->algo.dir.x * data->algo.move_speed;
 	}

@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:46:59 by lbattest          #+#    #+#             */
-/*   Updated: 2022/09/21 11:45:40 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/09/21 13:27:37 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,6 @@ static int	char_num_to_int(char *str)
 	return (res);
 }
 
-void	start_map(t_data *data)
-{
-	;
-}
-
 static void	init(int fd, t_data *data, int i)
 {
 	while (i < 6)
@@ -85,11 +80,6 @@ static void	init(int fd, t_data *data, int i)
 		data->buf = get_next_line(fd);
 		if (!data->buf)
 			break ;
-		if (usless_line(data->buf) == 1)
-		{
-			free(data->buf);
-			continue ;
-		}
 		if (ft_strnstr(data->buf, "NO ", 3) != 0 && i++ < 6)
 			data->sprites.no = get_path(data->buf + 2);
 		else if (ft_strnstr(data->buf, "SO ", 3) != 0 && i++ < 6)
@@ -102,6 +92,8 @@ static void	init(int fd, t_data *data, int i)
 			data->sprites.f = char_num_to_int(data->buf + 2);
 		else if (ft_strnstr(data->buf, "C ", 2) != 0 && i++ < 6)
 			data->sprites.c = char_num_to_int(data->buf + 2);
+		else if (data->buf && usless_line(data->buf) == 0)
+			error("Error\nInvalid map", 1);
 		free(data->buf);
 	}
 	get_map(fd, data, 0);

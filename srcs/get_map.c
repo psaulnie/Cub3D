@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 17:50:29 by lbattest          #+#    #+#             */
-/*   Updated: 2022/06/23 15:09:40 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:09:45 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,58 +50,67 @@ static void	map_close(t_data *data, int y, int x, int spawn)
 	}
 }
 
-static void	check_map(t_data *data, size_t max_len)
-{
-	int		x;
-	int		y;
-	int		spawn;
+// static void	check_map(t_data *data, size_t max_len)
+// {
+// 	int		x;
+// 	int		y;
+// 	int		spawn;
 
+// 	y = -1;
+// 	spawn = 0;
+// 	while (data->map[++y])
+// 	{
+// 		x = -1;
+// 		while (data->map[y][++x])
+// 		{
+// 			while ((unsigned long)x < max_len && data->map[y][x] == ' ')
+// 				data->map[y][x++] = '1';
+// 			if (ft_isalpha(data->map[y][x]))
+// 			{
+// 				spawn++;
+// 				get_player_orientation(data, y, x);
+// 			}
+// 			if ((data->map[y][x] != '1' && data->map[y][x] != '0') ||
+// 				spawn > 1)
+// 				error("Error\nInvalid map", 1);
+// 		}
+// 		data->map[y][x] = '\0';
+// 		map_close(data, y, x, spawn);
+// 	}
+// }
+
+// static void	fill_map(t_data *data, int line_nbr, t_list *tmp_map,
+// 	size_t max_len)
+// {
+// 	t_list	*tmp_ptr;
+// 	int		i;
+
+// 	i = 0;
+// 	tmp_ptr = tmp_map;
+// 	data->map = malloc(sizeof(char *) * (line_nbr + 1));
+// 	while (i < line_nbr)
+// 	{	
+// 		if (ft_strlen(tmp_map->content) == 0)
+// 			error("Error\nInvalid map", 1);
+// 		while (ft_strlen(tmp_map->content)
+// 			< max_len)
+// 			tmp_map->content = ft_strjoin_gnl(tmp_map->content, "1");
+// 		data->map[i] = tmp_map->content;
+// 		tmp_map = tmp_map->next;
+// 		i++;
+// 	}
+// 	data->map[i] = NULL;
+// 	ft_lstclear(&tmp_ptr, NULL);
+// 	check_map(data, max_len);
+// }
+
+static void	check_map(t_data *data)
+{
+	int	x;
+	int	y;
+	
 	y = -1;
-	spawn = 0;
-	while (data->map[++y])
-	{
-		x = -1;
-		while (data->map[y][++x])
-		{
-			while ((unsigned long)x < max_len && data->map[y][x] == ' ')
-				data->map[y][x++] = '1';
-			if (ft_isalpha(data->map[y][x]))
-			{
-				spawn++;
-				get_player_orientation(data, y, x);
-			}
-			if ((data->map[y][x] != '1' && data->map[y][x] != '0') ||
-				spawn > 1)
-				error("Error\nInvalid map", 1);
-		}
-		data->map[y][x] = '\0';
-		map_close(data, y, x, spawn);
-	}
-}
-
-static void	fill_map(t_data *data, int line_nbr, t_list *tmp_map,
-	size_t max_len)
-{
-	t_list	*tmp_ptr;
-	int		i;
-
-	i = 0;
-	tmp_ptr = tmp_map;
-	data->map = malloc(sizeof(char *) * (line_nbr + 1));
-	while (i < line_nbr)
-	{	
-		if (ft_strlen(tmp_map->content) == 0)
-			error("Error\nInvalid map", 1);
-		while (ft_strlen(tmp_map->content)
-			< max_len)
-			tmp_map->content = ft_strjoin_gnl(tmp_map->content, "1");
-		data->map[i] = tmp_map->content;
-		tmp_map = tmp_map->next;
-		i++;
-	}
-	data->map[i] = NULL;
-	ft_lstclear(&tmp_ptr, NULL);
-	check_map(data, max_len);
+	
 }
 
 void	get_map(int fd, t_data *data, size_t max_len)
@@ -129,5 +138,5 @@ void	get_map(int fd, t_data *data, size_t max_len)
 			max_len = ft_strlen(line);
 		ft_lstadd_back(&tmp_map, ft_lstnew(line));
 	}
-	fill_map(data, line_nbr, tmp_map, max_len);
+	// fill_map(data, line_nbr, tmp_map, max_len);
 }

@@ -6,7 +6,7 @@
 #    By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 15:39:19 by psaulnie          #+#    #+#              #
-#    Updated: 2022/06/27 16:22:04 by psaulnie         ###   ########.fr        #
+#    Updated: 2022/09/14 15:17:30 by psaulnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ LST_SRCS	:=	algo.c \
 				destroy.c \
 				draw.c \
 				input.c \
+				input_movement.c \
 				main.c \
 				parsing.c \
 				start.c \
@@ -47,7 +48,7 @@ INCS	:=	$(addprefix $(DIR_INCS)/,$(LST_INCS))
 AR_LIBFT	:=	$(DIR_LIBFT)/libft.a
 AR_MLX		:= libmlx.dylib
 
-all:	lib $(NAME)
+all:	lib ${AR_MLX} $(NAME)
 
 $(NAME):	$(AR_MLX) $(AR_LIBFT) $(OBJS)
 		$(CC) $(CFLAGS) $^ -o $@
@@ -58,11 +59,13 @@ $(DIR_OBJS)/%.o:	$(DIR_SRCS)/%.c $(INCS) Makefile | $(DIR_OBJS)
 $(DIR_OBJS):
 		mkdir -p $(DIR_OBJS)
 
-lib:
+lib:	libft/libft.h
 		make -C $(DIR_LIBFT)
-		make -C $(DIR_MLX)
-		cp $(DIR_MLX)/libmlx.dylib ./
 
+${AR_MLX}:	mlx/mlx.h
+		make -C $(DIR_MLX)
+		mv $(DIR_MLX)/libmlx.dylib libmlx.dylib
+	
 clean:
 		rm -rf $(DIR_OBJS)
 		make -C $(DIR_LIBFT) clean

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/28 10:40:39 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:08:23 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ typedef struct s_data
 	int			ceiling_color;
 }				t_data;
 
-
 /***************************/
 /*						   */
 /*        ALGORITHM        */
@@ -145,6 +144,14 @@ int		destroy_mouse(t_data *data);
 /*	INPUT.C		*/
 
 int		input(int key, t_data *data);
+
+/*	INPUT_MOVEMENT.C	*/
+
+void	go_forward(t_data *data);
+void	go_backward(t_data *data);
+void	go_left(t_data *data);
+void	go_right(t_data *data);
+
 /*	PARSING.C	*/
 
 int		usless_line(char *str);

@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:46:59 by lbattest          #+#    #+#             */
-/*   Updated: 2022/06/28 10:39:26 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/09/21 11:45:40 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ static int	char_num_to_int(char *str)
 	res |= nbr;
 	free_all(tab);
 	return (res);
+}
+
+void	start_map(t_data *data)
+{
+	;
 }
 
 static void	init(int fd, t_data *data, int i)

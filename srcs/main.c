@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/19 10:12:14 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:19:30 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,6 @@ int	main(int argc, char *argv[])
 	data = init();
 	data.mlx.mlx = mlx_init();
 	parsing(argv[1], &data);
-	int i = 0;
-	while (data.map[i])
-	{
-		printf("%s\n", data.map[i]);
-		i++;
-	}
 	load_textures(&data);
 	apply_textures(&data);
 	data = set_orientation(data);

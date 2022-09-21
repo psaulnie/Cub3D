@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:46:59 by lbattest          #+#    #+#             */
-/*   Updated: 2022/09/21 11:45:40 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/09/21 14:24:42 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ static int	char_num_to_int(char *str)
 	return (res);
 }
 
-void	start_map(t_data *data)
-{
-	;
-}
+// void	start_map(t_data *data)
+// {
+// 	;
+// }
 
 static void	init(int fd, t_data *data, int i)
 {

@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/13 14:08:23 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:44:46 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ typedef struct s_data
 	t_screen	screen;
 	t_player	player;
 	t_sprites	sprites;
+	t_text		hud;
+	t_text		hud2;
 	t_mlx		mlx;
 	t_algo		algo;
 	t_text		*text;

@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:46:59 by lbattest          #+#    #+#             */
-/*   Updated: 2022/09/21 13:27:37 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:09:06 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static void	valid_nbr(char **tab)
 	{
 		j = -1;
 		while (tab[i][++j])
-			if (!ft_isdigit(tab[i][j]) && tab[i][j] != '\n')
+			if (!ft_isdigit(tab[i][j]) && tab[i][j] != '\n' &&
+			!(tab[i][j] == ' ' || (tab[i][j] >= '\t' && tab[i][j] <= '\r')))
 				error("Error\nInvalid map", 1);
 	}
 	if (i != 3)

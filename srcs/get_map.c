@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 17:50:29 by lbattest          #+#    #+#             */
-/*   Updated: 2022/09/22 13:49:41 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:58:18 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static void	get_player_orientation(t_data *data, int y, int x)
 {
-	data->player.pos_x = x + 0.5;
-	data->player.pos_y = y + 0.5;
 	if (data->map[y][x] == 'N')
 		data->player.orientation = NORTH;
 	else if (data->map[y][x] == 'W')
@@ -24,9 +22,14 @@ static void	get_player_orientation(t_data *data, int y, int x)
 		data->player.orientation = SOUTH;
 	else if (data->map[y][x] == 'E')
 		data->player.orientation = EAST;
-	else
+	else if (data->map[y][x] != 'D')
 		error("Error\nInvalid map", 1);
-	data->map[y][x] = '0';
+	if (data->map[y][x] != 'D')
+	{
+		data->map[y][x] = '0';
+		data->player.pos_x = x + 0.5;
+		data->player.pos_y = y + 0.5;
+	}
 }
 
 // static void	map_close(t_data *data, int y, int x, int spawn)
@@ -97,17 +100,19 @@ static void	check_map(t_data *data, int line_nbr)
 		}
 		else
 		{
-			while (data->map[y][++x] && data->map[y][x] == ' ')
+			while (data->map[y][x] && data->map[y][x] == ' ')
 				x++;
 			while (data->map[y][++x])
 			{
 				if (ft_isalpha(data->map[y][x]))
 				{
 					get_player_orientation(data, y, x);
-					spawn++;
+					if (data->map[y][x] != 'D')
+						spawn++;
 				}
 				else if ((data->map[y][x] != '1' && data->map[y][x] != '0' &&
-					data->map[y][x] != '2') || spawn > 1)
+					data->map[y][x] != '2' && data->map[y][x] != 'D')
+					|| spawn > 1)
 					error("Error\nInvalid map", 1);
 				if (data->map[y][x] == '0' || ft_isalpha(data->map[y][x]))
 				{

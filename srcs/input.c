@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 13:22:46 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/21 15:44:42 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:07:18 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ static void	shoot(t_data *data)
 {
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win,
 		data->hud2.img, 0, 0);
+
+	data->map[(int)(data->algo.ray_pos.x + data->algo.dir.x
+		* data->algo.move_speed)][(int)data->algo.ray_pos.y] = '0';
 }
 
 static void	turn_left(t_data *data)

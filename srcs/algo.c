@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:35:22 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/27 16:09:27 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:46:04 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	dda_algo(t_data *data)
 			data->algo.side = 1;
 		}
 		if (data->map[(int)data->algo.map.x][(int)data->algo.map.y] == '1')
+			data->algo.hit = 1;
+		else if (data->map[(int)data->algo.map.x][(int)data->algo.map.y] == 'D')
 			data->algo.hit = 1;
 	}
 }

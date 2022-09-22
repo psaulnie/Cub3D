@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/22 11:46:14 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:06:35 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static t_data	init(void)
 }
 
 int	main(int argc, char *argv[])
-{
+{	
 	t_data	data;
 
 	if (argc > 3)

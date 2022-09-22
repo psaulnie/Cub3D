@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 10:18:05 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/22 10:46:59 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:47:29 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,14 @@ static void	loader(t_data *data, t_orientation orien, char *path)
 
 void	load_textures(t_data *data)
 {
-	data->text = malloc(sizeof(t_text) * 4);
+	data->text = malloc(sizeof(t_text) * 5);
 	if (!data->text)
 		exit_texture(data);
 	loader(data, NORTH, data->sprites.no);
 	loader(data, WEST, data->sprites.we);
 	loader(data, EAST, data->sprites.ea);
 	loader(data, SOUTH, data->sprites.so);
+	loader(data, DOOR, "textures/debug128x128.xpm");
 	data->hud.img = mlx_xpm_file_to_image(data->mlx.mlx, "textures/hud.xpm",
 			&data->hud.img_width, &data->hud.img_height);
 	data->hud2.img = mlx_xpm_file_to_image(data->mlx.mlx, "textures/hud2.xpm",
@@ -69,14 +70,14 @@ void	apply_textures(t_data *data)
 {
 	int	j;
 
-	data->texture = malloc(sizeof(int *) * (sizeof(int *) * 4));
+	data->texture = malloc(sizeof(int *) * (sizeof(int *) * 5));
 	if (!data->texture)
 	{
 		ft_putendl_fd("Error\nMalloc error", 2);
 		exit_texture(data);
 	}
 	j = 0;
-	while (j < 4)
+	while (j < 5)
 	{
 		data->texture[j] = data->text[j].addr;
 		j++;

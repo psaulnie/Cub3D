@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/21 15:44:46 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:40:43 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ typedef enum e_orientation
 	NORTH,
 	WEST,
 	EAST,
-	SOUTH
+	SOUTH,
+	DOOR
 }			t_orientation;
 
 typedef struct s_pos

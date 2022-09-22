@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/22 14:40:43 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:34:38 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ typedef struct s_algo
 	int		**buffer;
 	int		side;
 	int		hit;
+	int		odoor_hit;
+	t_pos	odoor_pos;
 	double	perp_wall_dist;
 	double	camera_x;
 	double	move_speed;

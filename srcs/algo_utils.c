@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:36:49 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/22 15:08:30 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:13:55 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	get_wall_text(t_data *data)
 {
 	int	texture;
 
-	if (data->map[(int)data->algo.map.y][(int)data->algo.map.x] == 'D')
+	if (data->algo.hit == 2)
 		return (DOOR);
 	if (data->algo.side == 0)
 	{

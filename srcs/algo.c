@@ -6,15 +6,16 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:35:22 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/22 14:46:04 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:42:44 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static void	dda_algo(t_data *data)
+static void	dda_algo(t_data *data, t_pos pos)
 {
 	data->algo.hit = 0;
+	data->algo.odoor_hit = 0;
 	while (data->algo.hit == 0)
 	{
 		if (data->algo.side_dist.x < data->algo.side_dist.y)
@@ -32,7 +33,16 @@ static void	dda_algo(t_data *data)
 		if (data->map[(int)data->algo.map.x][(int)data->algo.map.y] == '1')
 			data->algo.hit = 1;
 		else if (data->map[(int)data->algo.map.x][(int)data->algo.map.y] == 'D')
-			data->algo.hit = 1;
+			data->algo.hit = 2;
+		if (pos.x == 640)
+			printf("%c\n", data->map[(int)data->algo.map.x][(int)data->algo.map.y]);
+		if (data->map[(int)data->algo.map.x][(int)data->algo.map.y] == '3' && pos.x == 640)
+		{
+			printf("A\n");
+			data->algo.odoor_pos.x = data->algo.map.x;
+			data->algo.odoor_pos.y = data->algo.map.y;
+			data->algo.odoor_hit = 1;
+		}
 	}
 }
 
@@ -104,7 +114,7 @@ static void	texture_calculation(t_data *data)
 void	algo(t_data *data, t_pos pos)
 {
 	init_value(data, pos);
-	dda_algo(data);
+	dda_algo(data, pos);
 	if (data->algo.side == 0)
 		data->algo.perp_wall_dist = ((int)data->algo.map.x
 				- data->algo.ray_pos.x + (1 - data->algo.step.x) / 2)

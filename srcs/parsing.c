@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 13:46:59 by lbattest          #+#    #+#             */
-/*   Updated: 2022/09/21 14:24:42 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:11:19 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static void	valid_nbr(char **tab)
 	{
 		j = -1;
 		while (tab[i][++j])
-			if (!ft_isdigit(tab[i][j]) && tab[i][j] != '\n')
+			if (!ft_isdigit(tab[i][j]) && tab[i][j] != '\n' &&
+			!(tab[i][j] == ' ' || (tab[i][j] >= '\t' && tab[i][j] <= '\r')))
 				error("Error\nInvalid map", 1);
 	}
 	if (i != 3)
@@ -73,11 +74,6 @@ static int	char_num_to_int(char *str)
 	return (res);
 }
 
-// void	start_map(t_data *data)
-// {
-// 	;
-// }
-
 static void	init(int fd, t_data *data, int i)
 {
 	while (i < 6)
@@ -85,11 +81,6 @@ static void	init(int fd, t_data *data, int i)
 		data->buf = get_next_line(fd);
 		if (!data->buf)
 			break ;
-		if (usless_line(data->buf) == 1)
-		{
-			free(data->buf);
-			continue ;
-		}
 		if (ft_strnstr(data->buf, "NO ", 3) != 0 && i++ < 6)
 			data->sprites.no = get_path(data->buf + 2);
 		else if (ft_strnstr(data->buf, "SO ", 3) != 0 && i++ < 6)
@@ -102,6 +93,8 @@ static void	init(int fd, t_data *data, int i)
 			data->sprites.f = char_num_to_int(data->buf + 2);
 		else if (ft_strnstr(data->buf, "C ", 2) != 0 && i++ < 6)
 			data->sprites.c = char_num_to_int(data->buf + 2);
+		else if (data->buf && usless_line(data->buf) == 0)
+			error("Error\nInvalid map", 1);
 		free(data->buf);
 	}
 	get_map(fd, data, 0);

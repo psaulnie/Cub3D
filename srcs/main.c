@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/21 14:19:30 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:46:14 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,11 @@ int	main(int argc, char *argv[])
 {
 	t_data	data;
 
-	if (argc != 2)
+	if (argc > 3)
+	{
+		ft_putendl_fd("Error\nToo many arguments", 2);
 		return (1);
+	}
 	data = init();
 	data.mlx.mlx = mlx_init();
 	parsing(argv[1], &data);

@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:36:43 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/06/27 16:28:27 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:20:53 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	draw_line(t_data *data, t_pos pos)
 		data->algo.buffer[y][(int)pos.x] = data->ceiling_color;
 		y++;
 	}
-	while (y < data->algo.end)
+	while (y < data->algo.end + 1)
 	{
 		data->algo.text_y = (int)data->algo.text_pos
 			& (data->text[data->algo.texture].img_height - 1);

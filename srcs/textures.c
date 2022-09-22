@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 10:18:05 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/21 16:59:39 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/22 10:46:59 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	load_textures(t_data *data)
 			&data->hud2.img_width, &data->hud2.img_height);
 	if (data->hud.img == NULL || data->hud2.img == NULL)
 	{
+		ft_putendl_fd("Error\nHUD textures canoot be loaded", 2);
 		exit_texture(data);
 	}
 }

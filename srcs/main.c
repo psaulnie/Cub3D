@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/22 13:48:04 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:11:15 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,20 +94,17 @@ static t_data	init(void)
 }
 
 int	main(int argc, char *argv[])
-{
+{	
 	t_data	data;
 
-	if (argc != 2)
+	if (argc > 3)
+	{
+		ft_putendl_fd("Error\nToo many arguments", 2);
 		return (1);
+	}
 	data = init();
 	data.mlx.mlx = mlx_init();
 	parsing(argv[1], &data);
-	int i = 0;
-	while (data.map[i])
-	{
-		printf("%s\n", data.map[i]);
-		i++;
-	}
 	load_textures(&data);
 	apply_textures(&data);
 	data = set_orientation(data);

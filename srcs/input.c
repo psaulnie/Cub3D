@@ -6,11 +6,21 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 13:22:46 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/21 14:09:17 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:35:53 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+static void	shoot(t_data *data)
+{
+	mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win,
+		data->hud2.img, 0, 0);
+	if (data->map[(int)(data->algo.map.x)][(int)data->algo.map.y] == 'D')
+		data->map[(int)(data->algo.map.x)][(int)data->algo.map.y] = '3';
+	else if (data->algo.odoor_hit == 1)
+		data->map[(int)(data->algo.odoor_pos.x)][(int)data->algo.odoor_pos.y] = 'D';
+}
 
 static void	turn_left(t_data *data)
 {
@@ -62,6 +72,8 @@ int	input(int key, t_data *data)
 		turn_left(data);
 	else if (key == 124)
 		turn_right(data);
+	else if (key == 14)
+		shoot(data);
 	mlx_destroy_image(data->mlx.mlx, data->mlx.img);
 	data->mlx.img = mlx_new_image(data->mlx.mlx, data->screen.width,
 			data->screen.height);

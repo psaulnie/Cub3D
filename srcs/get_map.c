@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 17:50:29 by lbattest          #+#    #+#             */
-/*   Updated: 2022/09/26 11:48:11 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/09/26 18:00:08 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,24 @@ static void	check_map(t_data *data, int line_nbr)
 		{
 			if (ft_isalpha(data->map[y][x]))
 			{
-				get_player_orientation(data, y, x);
-				if (data->map[y][x] != 'D')
-					spawn++;
+				if (ft_isalpha(data->map[y][x]))
+				{
+					get_player_orientation(data, y, x);
+					if (data->map[y][x] != 'D')
+						spawn++;
+				}
+				else if ((data->map[y][x] != '1' && data->map[y][x] != '0' &&
+					data->map[y][x] != '2' && data->map[y][x] != 'D')
+					|| spawn > 1)
+					error("Error\nInvalid map", 1);
+				if (data->map[y][x] == '0' || ft_isalpha(data->map[y][x]))
+				{
+					if (data->map[y][x - 1] != '0' && data->map[y][x - 1] != '1'
+					&& data->map[y][x + 1] != '0' && data->map[y][x + 1] != '1'
+					&& data->map[y - 1][x] != '0' && data->map[y - 1][x] != '1'
+					&& data->map[y + 1][x] != '0' && data->map[y + 1][x] != '1')
+						error("Error\nInvalid map", 1);
+				}
 			}
 			else if ((data->map[y][x] != '1' && data->map[y][x] != '0' &&
 				data->map[y][x] != '2' && data->map[y][x] != 'D') || spawn > 1)

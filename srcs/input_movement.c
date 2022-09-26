@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:36:21 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/22 15:25:38 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/26 16:53:24 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	go_right(t_data *data)
 	if (map == '0' || map == '3')
 		data->algo.ray_pos.x += data->algo.plane.x * data->algo.move_speed;
 	map = data->map[(int)(data->algo.ray_pos.x)][(int)(data->algo.ray_pos.y
-			+ data->algo.plane.y * data->algo.move_speed)] == '0';
+			+ data->algo.plane.y * data->algo.move_speed)];
 	if (map == '0' || map == '3')
 		data->algo.ray_pos.y += data->algo.plane.y * data->algo.move_speed;
 }

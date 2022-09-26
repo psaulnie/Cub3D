@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:35:22 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/22 16:42:44 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:24:44 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static void	dda_algo(t_data *data, t_pos pos)
 {
 	data->algo.hit = 0;
-	data->algo.odoor_hit = 0;
 	while (data->algo.hit == 0)
 	{
 		if (data->algo.side_dist.x < data->algo.side_dist.y)
@@ -34,15 +33,7 @@ static void	dda_algo(t_data *data, t_pos pos)
 			data->algo.hit = 1;
 		else if (data->map[(int)data->algo.map.x][(int)data->algo.map.y] == 'D')
 			data->algo.hit = 2;
-		if (pos.x == 640)
-			printf("%c\n", data->map[(int)data->algo.map.x][(int)data->algo.map.y]);
-		if (data->map[(int)data->algo.map.x][(int)data->algo.map.y] == '3' && pos.x == 640)
-		{
-			printf("A\n");
-			data->algo.odoor_pos.x = data->algo.map.x;
-			data->algo.odoor_pos.y = data->algo.map.y;
-			data->algo.odoor_hit = 1;
-		}
+		dda_door(data, pos);
 	}
 }
 

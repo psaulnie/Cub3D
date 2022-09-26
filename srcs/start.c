@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:19:51 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/22 14:20:16 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/26 16:35:46 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int	algo_loop(t_data *data)
 	t_pos	pos;
 
 	pos.x = 0;
+	data->algo.odoor_hit = 0;
 	while (pos.x < data->screen.width)
 	{
 		algo(data, pos);

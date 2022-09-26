@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/22 16:34:38 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:24:38 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ void	algo(t_data *data, t_pos pos);
 /*	ALGO_UTILS.C	*/
 
 int		get_wall_text(t_data *data);
+void	dda_door(t_data *data, t_pos pos);
 
 /*	DESTROY.C	*/
 

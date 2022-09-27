@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/26 17:24:38 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/27 15:35:57 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_mlx
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		mouse_support;
 }				t_mlx;
 
 typedef struct s_algo
@@ -149,6 +150,8 @@ int		destroy_mouse(t_data *data);
 
 /*	INPUT.C		*/
 
+void	turn_left(t_data *data);
+void	turn_right(t_data *data);
 int		input(int key, t_data *data);
 
 /*	INPUT_MOVEMENT.C	*/
@@ -175,6 +178,12 @@ void	draw(t_data *data);
 void	draw_line(t_data *data, t_pos pos);
 void	pixel_put(t_data *data, int x, int y, int color);
 
+/*	MOUSE.C		*/
+
+void	check_mouse(t_data *data);
+void	mouse_movement(t_data *data);
+void	toggle_mouse_support(t_data *data);
+
 /*	PARSING.C	*/
 
 void	parsing(char *name, t_data *data);
@@ -187,11 +196,11 @@ void	start(t_data *data);
 
 void	load_textures(t_data *data);
 void	apply_textures(t_data *data);
-/*	GET_PATH	*/
+/*	GET_PATH.C	*/
 
 void	get_map(int fd, t_data *data, size_t max_len);
 
-/*	UTILS.C	*/
+/*	UTILS.C		*/
 
 void	error(char *str, int i);
 void	free_all(char **str);

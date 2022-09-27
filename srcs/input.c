@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 13:22:46 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/26 17:36:25 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/27 15:35:39 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	shoot(t_data *data)
 	}
 }
 
-static void	turn_left(t_data *data)
+void	turn_left(t_data *data)
 {
 	t_pos	old_dir;
 	t_pos	old_plane;
@@ -68,7 +68,7 @@ static void	turn_left(t_data *data)
 		+ data->algo.plane.y * cos(data->algo.rot_speed);
 }
 
-static void	turn_right(t_data *data)
+void	turn_right(t_data *data)
 {
 	t_pos	old_dir;
 	t_pos	old_plane;
@@ -103,6 +103,8 @@ int	input(int key, t_data *data)
 		turn_right(data);
 	else if (key == 14)
 		shoot(data);
+	else if (key == 48)
+		toggle_mouse_support(data);
 	mlx_destroy_image(data->mlx.mlx, data->mlx.img);
 	data->mlx.img = mlx_new_image(data->mlx.mlx, data->screen.width,
 			data->screen.height);

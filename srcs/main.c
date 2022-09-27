@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/22 15:11:15 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:44:10 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ static t_data	init(void)
 	data.screen.width = 1280;
 	data.algo.move_speed = 0.1;
 	data.algo.rot_speed = 0.1;
+	data.mlx.mouse_support = 0;
 	data.algo.buffer = set_buffer(data.screen);
 	return (data);
 }

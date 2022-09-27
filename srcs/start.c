@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:19:51 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/26 16:35:46 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/27 15:36:58 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@ static int	algo_loop(t_data *data)
 		pos.x++;
 	}
 	draw(data);
+	if (data->mlx.mouse_support)
+		check_mouse(data);
 	mlx_put_image_to_window(data->mlx.mlx,
 		data->mlx.mlx_win, data->mlx.img, 0, 0);
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win,
 		data->hud.img, 0, 0);
+	if (data->mlx.mouse_support)
+		mouse_movement(data);
 	return (0);
 }
 
@@ -41,6 +45,8 @@ void	start(t_data *data)
 			&data->mlx.bits_per_pixel, &data->mlx.line_length,
 			&data->mlx.endian);
 	mlx_loop_hook(data->mlx.mlx, &algo_loop, data);
+	if (data->mlx.mouse_support)
+		mouse_movement(data);
 	mlx_clear_window(data->mlx.mlx, data->mlx.mlx_win);
 	mlx_hook(data->mlx.mlx_win, 17, 1L << 0, destroy_mouse, data);
 	mlx_hook(data->mlx.mlx_win, 2, 0, &input, data);

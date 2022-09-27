@@ -6,7 +6,7 @@
 #    By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 15:39:19 by psaulnie          #+#    #+#              #
-#    Updated: 2022/09/21 14:25:22 by psaulnie         ###   ########.fr        #
+#    Updated: 2022/09/27 16:13:02 by psaulnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	:=	cub3d
 
 CC		:=	gcc
 CFLAGS	:=	-Wall -Wextra -Werror
-CFLAGS	+= -fsanitize=address -g3
+# CFLAGS	+= -fsanitize=address -g3
 
 DIR_SRCS	:=	srcs
 DIR_OBJS	:=	.objs
@@ -35,6 +35,7 @@ LST_SRCS	:=	algo.c \
 				textures.c \
 				utils.c \
 				get_map.c \
+				mouse.c \
 
 LST_OBJS	:=	$(LST_SRCS:.c=.o)
 

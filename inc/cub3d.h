@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:40:08 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/27 15:35:57 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:14:44 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,9 @@ void	toggle_mouse_support(t_data *data);
 /*	PARSING.C	*/
 
 void	parsing(char *name, t_data *data);
+void	while_loop(t_data *data, int y, int x, int line_nbr);
+void	get_player_orientation(t_data *data, int y, int x);
+void	closed_map(t_data *data, int y, int x);
 
 /*	START.C	*/
 
@@ -196,6 +199,7 @@ void	start(t_data *data);
 
 void	load_textures(t_data *data);
 void	apply_textures(t_data *data);
+
 /*	GET_PATH.C	*/
 
 void	get_map(int fd, t_data *data, size_t max_len);

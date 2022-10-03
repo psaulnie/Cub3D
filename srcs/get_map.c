@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 17:50:29 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/03 14:53:19 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/10/03 16:14:40 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static void	get_player_orientation(t_data *data, int y, int x)
+void	get_player_orientation(t_data *data, int y, int x)
 {
 	if (data->map[y][x] == 'N')
 		data->player.orientation = NORTH;
@@ -32,7 +32,7 @@ static void	get_player_orientation(t_data *data, int y, int x)
 	}
 }
 
-static void	closed_map(t_data *data, int y, int x)
+void	closed_map(t_data *data, int y, int x)
 {
 	if (data->map[y][x] == '0' || ft_isalpha(data->map[y][x]))
 	{
@@ -59,30 +59,17 @@ static void	closed_map(t_data *data, int y, int x)
 	}
 }
 
-static void	check_map(t_data *data, int line_nbr, int spawn, int y)
+static void	check_map(t_data *data, int line_nbr, int y)
 {
 	int		x;
 
 	while (++y < line_nbr)
 	{
 		x = 0;
-		while (data->map[y][x] && data->map[y][x] == ' ')
-			x++;
+		if (data->map[y][x] != '1' && data->map[y][x] != '2')
+			error("Error\nMap not close", 1);
 		while (data->map[y][++x])
-		{
-			if (ft_isalpha(data->map[y][x]))
-			{
-				get_player_orientation(data, y, x);
-				if (data->map[y][x] != 'D')
-					spawn++;
-			}
-			else if ((data->map[y][x] != '1' && data->map[y][x] != '0' &&
-				data->map[y][x] != '2' && data->map[y][x] != 'D'))
-				error("Error\nInvalid character", 1);
-			else if (spawn > 1)
-				error("Error\nToo many spawns", 1);
-			closed_map(data, y, x);
-		}
+			while_loop(data, y, x, line_nbr);
 	}
 }
 
@@ -113,7 +100,7 @@ static void	fill_map(t_data *data, int line_nbr, t_list *tmp_map,
 	}
 	data->map[i] = NULL;
 	ft_lstclear(&tmp_ptr, NULL);
-	check_map(data, line_nbr, 0, -1);
+	check_map(data, line_nbr, -1);
 }
 
 void	get_map(int fd, t_data *data, size_t max_len)

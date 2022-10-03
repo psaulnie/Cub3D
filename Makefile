@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+         #
+#    By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 15:39:19 by psaulnie          #+#    #+#              #
-#    Updated: 2022/10/03 14:28:07 by psaulnie         ###   ########.fr        #
+#    Updated: 2022/10/03 16:13:18 by lbattest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ LST_SRCS	:=	algo.c \
 				utils.c \
 				get_map.c \
 				mouse.c \
+				get_map_utils.c
 
 LST_SRCS_BONUS	:=	algo.c \
 				algo_utils.c \
@@ -53,6 +54,7 @@ LST_SRCS_BONUS	:=	algo.c \
 				utils.c \
 				get_map.c \
 				mouse.c \
+				get_map_utils.c
 
 LST_OBJS		:=	$(LST_SRCS:.c=.o)
 LST_OBJS_BONUS	:=	$(LST_SRCS_BONUS:.c=.o)

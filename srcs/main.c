@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:39:39 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/09/27 11:44:10 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:31:13 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ int	main(int argc, char *argv[])
 {	
 	t_data	data;
 
-	if (argc > 3)
+	if (argc != 2)
 	{
-		ft_putendl_fd("Error\nToo many arguments", 2);
+		ft_putendl_fd("Error\nWrong number of arguments", 2);
 		return (1);
 	}
 	data = init();

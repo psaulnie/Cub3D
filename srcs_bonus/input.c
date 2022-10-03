@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 13:22:46 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/10/03 14:30:28 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/27 15:35:39 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static int	shoot_condition(t_data *data)
 
 static void	shoot(t_data *data)
 {
+	mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win,
+		data->hud2.img, 0, 0);
 	if (shoot_condition(data) == 1)
 	{
 		if (data->algo.odoor_hit == 1

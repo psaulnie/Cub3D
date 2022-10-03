@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:19:51 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/10/03 14:30:18 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/27 15:36:58 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static int	algo_loop(t_data *data)
 		check_mouse(data);
 	mlx_put_image_to_window(data->mlx.mlx,
 		data->mlx.mlx_win, data->mlx.img, 0, 0);
+	mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win,
+		data->hud.img, 0, 0);
 	if (data->mlx.mouse_support)
 		mouse_movement(data);
 	return (0);

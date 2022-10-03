@@ -6,7 +6,7 @@
 /*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 10:18:05 by psaulnie          #+#    #+#             */
-/*   Updated: 2022/10/03 14:29:52 by psaulnie         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:18:25 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,15 @@ void	load_textures(t_data *data)
 	loader(data, EAST, data->sprites.ea);
 	loader(data, SOUTH, data->sprites.so);
 	loader(data, DOOR, "textures/door.xpm");
+	data->hud.img = mlx_xpm_file_to_image(data->mlx.mlx, "textures/hud.xpm",
+			&data->hud.img_width, &data->hud.img_height);
+	data->hud2.img = mlx_xpm_file_to_image(data->mlx.mlx, "textures/hud2.xpm",
+			&data->hud2.img_width, &data->hud2.img_height);
+	if (data->hud.img == NULL || data->hud2.img == NULL)
+	{
+		ft_putendl_fd("Error\nHUD textures canoot be loaded", 2);
+		exit_texture(data);
+	}
 }
 
 void	apply_textures(t_data *data)

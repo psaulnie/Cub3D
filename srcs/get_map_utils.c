@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psaulnie <psaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 16:08:52 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/03 16:12:06 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/10/04 09:57:25 by psaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	while_loop(t_data *data, int y, int x, int line_nbr)
 {
-	int	spawn;
+	static int	spawn = 0;
 
-	spawn = 0;
 	if (ft_isalpha(data->map[y][x]))
 	{
 		get_player_orientation(data, y, x);
